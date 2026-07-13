@@ -10,17 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "autoprefixer": "^10.5.2",
     "bootstrap": "^5.3.3",
+    "postcss": "^8.5.18",
     "react": "^18.3.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-bootstrap": "^2.10.5",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.6.0",
-    "react-toastify": "^11.0.5",
-    "smooth-scrollbar": "^8.8.4"
+    "react-toastify": "^11.1.0",
+    "smooth-scrollbar": "^8.8.4",
+    "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@tailwindcss/postcss": "^4.3.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
