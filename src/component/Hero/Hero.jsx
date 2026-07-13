@@ -4,7 +4,7 @@ import pic from '../../assets/hero2.png'
 
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import Navber from '../Navber/Navber'
-import Work from '../Work/Work'
+
 import Footer from '../Footer/Footer'
 
 export default function Hero() {

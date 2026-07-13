@@ -6,6 +6,10 @@ import call from '../../assets/call_icon.svg'
 import Navber from '../Navber/Navber'
 import Footer from '../Footer/Footer'
 
+
+
+
+
 export default function Contact() {
 
 
@@ -28,7 +32,10 @@ export default function Contact() {
     }).then((res) => res.json());
  
     if (res.success) {
-      alert(res.message)
+      alert("Email sent successfull")
+     
+     
+     
     }
   };
 
@@ -39,8 +46,13 @@ export default function Contact() {
 
 
   return (
+    
     <>
+     
+    
+     
     <Navber/>
+     
     <div id='Contact' className='Contact'>
     <div className='container '>
     <h1 className='contact-text'>Contact<hr style={{width:'30%'}}></hr></h1>
@@ -96,6 +108,8 @@ export default function Contact() {
 
 
 <Footer/>
+    
+
    
   </> 
   )

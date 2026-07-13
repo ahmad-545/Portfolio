@@ -57,7 +57,7 @@ section{
     gap: 2rem;
     font-weight: 500;
     font-size: 24px;
-    margin-bottom: 40px;
+    margin-top: -15px;
 
 }
 
@@ -129,7 +129,32 @@ font-size: 0.95rem;
 padding: 6px 12px;
 font-size: 0.85rem;
 border-radius: 40px;
+
 }
+.hero h1{
+    
+    font-weight: 500px;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: -25px;
+   
+   
+    
+
+}
+.hero p{
+    text-align:center;
+    font-size: 20px;
+  
+    
+  
+   
+}
+
+.hero-action{
+    margin-top: 20px;
+}
+
 }
 
 
