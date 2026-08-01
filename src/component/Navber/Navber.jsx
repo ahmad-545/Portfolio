@@ -32,11 +32,11 @@ function Navbar() {
         }`}
       >
         {/* Logo */}
-        <Link 
+       <Link 
           to="/" 
           className="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-500 hover:scale-105 transition-transform"
         >
-          Coder<span className="text-cyan-400">.</span>
+          MA<span className="text-cyan-400">.</span>
         </Link>
 
         {/* Navigation Links */}
