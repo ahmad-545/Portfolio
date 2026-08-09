@@ -49,7 +49,7 @@ export default function About() {
           {/* Right Column: Bio Copy & Interactive Skill Bars */}
           <div className="lg:col-span-7 space-y-8">
             <p className="text-slate-300 text-lg font-light leading-relaxed">
-              I am a passionate MERN Stack Developer dedicated to building efficient, scale-ready web applications[cite: 1, 2]. I specialize in crafting rich user interfaces with React, managing database state with MongoDB, and engineering robust backend systems utilizing Node.js and Express[cite: 1, 2]. From creating smooth interactive designs to deploying server logic, I focus on building high-performance solutions[cite: 1, 2].
+              I am a passionate MERN Stack Developer dedicated to building efficient, scale-ready web applications.I specialize in crafting rich user interfaces with React, managing database state with MongoDB, and engineering robust backend systems utilizing Node.js and Express. From creating smooth interactive designs to deploying server logic, I focus on building high-performance solutions.
             </p>
 
             {/* Rendered Skill Stack */}
