@@ -27,22 +27,25 @@ function Navbar() {
       <header
         className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4 md:px-12 transition-all duration-300 ${
           sticky 
-            ? "bg-slate-950/80 backdrop-blur-md shadow-xl py-3 border-b border-slate-800/60" 
-            : "bg-slate-950/20 backdrop-blur-sm"
+            ? "bg-slate-950/90 backdrop-blur-md shadow-xl shadow-cyan-500/5 py-3 border-b border-slate-800/80" 
+            : "bg-slate-950 backdrop-blur-sm"
         }`}
       >
         {/* Logo */}
-       <Link 
+        <Link 
           to="/" 
-          className="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-500 hover:scale-105 transition-transform"
+          className="group text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-500 transition-transform duration-300 hover:scale-105 flex items-center gap-1"
         >
-          MA<span className="text-cyan-400">.</span>
+          <span className="inline-block transition-transform duration-300 group-hover:-rotate-6">MA</span>
+          <span className="text-cyan-400 animate-pulse">.</span>
         </Link>
 
         {/* Navigation Links */}
         <ul
-          className={`absolute md:static top-full left-0 w-full md:w-auto bg-slate-950/95 md:bg-transparent flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8 px-6 py-8 md:p-0 border-b border-slate-800 md:border-none transition-all duration-300 ease-in-out ${
-            mstatus ? "opacity-100 visible" : "opacity-0 invisible md:opacity-100 md:visible md:flex"
+          className={`absolute md:static top-full left-0 w-full md:w-auto bg-slate-950 md:bg-transparent flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8 px-6 py-8 md:p-0 border-b border-slate-800 md:border-none shadow-2xl md:shadow-none transition-all duration-300 ease-in-out ${
+            mstatus 
+              ? "opacity-100 visible translate-y-0" 
+              : "opacity-0 invisible -translate-y-4 md:opacity-100 md:visible md:translate-y-0 md:flex"
           }`}
         >
           {links.map((link) => {
@@ -54,8 +57,8 @@ function Navbar() {
                   onClick={() => setMstatus(false)} 
                   className={`font-medium tracking-wide text-sm transition-all duration-300 block py-1 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-cyan-400 after:transition-all after:duration-300 ${
                     isActive 
-                      ? "text-cyan-400 after:w-full" 
-                      : "text-slate-400 hover:text-white after:w-0 hover:after:w-full"
+                      ? "text-cyan-400 after:w-full font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]" 
+                      : "text-slate-400 hover:text-cyan-300 after:w-0 hover:after:w-full"
                   }`}
                 >
                   {link.name}
@@ -65,12 +68,14 @@ function Navbar() {
           })}
         </ul>
 
-        {/* Hamburger Menu Icon */}
+        {/* Bigger Animated Hamburger Menu Icon */}
         <div
-          className="text-2xl text-slate-400 hover:text-cyan-400 cursor-pointer md:hidden block transition-colors select-none"
+          className="relative w-9 h-8 flex flex-col justify-between items-center md:hidden cursor-pointer group z-50 select-none py-1"
           onClick={() => setMstatus(!mstatus)}
         >
-          {mstatus ? <span>&#10005;</span> : <span>&#9776;</span>}
+          <span className={`w-full h-1 bg-slate-300 group-hover:bg-cyan-400 transition-all duration-300 rounded-full ${mstatus ? 'rotate-45 translate-y-2.5 bg-cyan-400' : ''}`} />
+          <span className={`w-full h-1 bg-slate-300 group-hover:bg-cyan-400 transition-all duration-300 rounded-full ${mstatus ? 'opacity-0 scale-x-0' : ''}`} />
+          <span className={`w-full h-1 bg-slate-300 group-hover:bg-cyan-400 transition-all duration-300 rounded-full ${mstatus ? '-rotate-45 -translate-y-2.5 bg-cyan-400' : ''}`} />
         </div>
       </header>
       <div className="h-16 bg-slate-950"></div>

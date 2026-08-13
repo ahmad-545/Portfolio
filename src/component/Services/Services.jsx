@@ -1,10 +1,88 @@
-import React from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import arrowIcon from '../../assets/arrow_icon.svg';
 import Navbar from '../Navber/Navber';
 import Footer from '../Footer/Footer';
+import { Terminal, Sparkles } from 'lucide-react';
+
+/* ---------------------------------------------------------
+   Small reusable hooks (matching Hero/About/Work animations)
+--------------------------------------------------------- */
+function useReveal(threshold = 0.15) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(node);
+        }
+      },
+      { threshold }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return [ref, visible];
+}
+
+function Reveal({ children, delay = 0, className = '' }) {
+  const [ref, visible] = useReveal();
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-700 ease-out ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function TiltCard({ children, className = '' }) {
+  const ref = useRef(null);
+  const [style, setStyle] = useState({});
+
+  const handleMove = (e) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const rotateY = (px - 0.5) * 8;
+    const rotateX = (0.5 - py) * 8;
+    setStyle({
+      transform: `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`,
+      '--glow-x': `${px * 100}%`,
+      '--glow-y': `${py * 100}%`,
+    });
+  };
+
+  const handleLeave = () => {
+    setStyle({ transform: 'perspective(700px) rotateX(0deg) rotateY(0deg)' });
+  };
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      style={{ transformStyle: 'preserve-3d', transition: 'transform 0.2s ease-out', ...style }}
+      className={`tilt-card relative ${className}`}
+    >
+      <div className="tilt-glow pointer-events-none absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
+      {children}
+    </div>
+  );
+}
 
 export default function Services() {
-  // Aapki requirements ke mutabiq customized modern texting aur services data
   const customServices = [
     {
       s_no: "01",
@@ -14,7 +92,7 @@ export default function Services() {
     {
       s_no: "02",
       s_name: "AI Model Integration",
-      s_desc: "Connecting advanced Al capabilities into standard web applications. Experienced in training, configuring, and deploying complex deep learning datasets and computer vision models (like VITON-HD) into dynamic full-stack environments."
+      s_desc: "Connecting advanced AI capabilities into standard web applications. Experienced in training, configuring, and deploying complex deep learning datasets and computer vision models (like VITON-HD) into dynamic full-stack environments."
     },
     {
       s_no: "03",
@@ -23,48 +101,127 @@ export default function Services() {
     }
   ];
 
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 20 }).map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: 1 + Math.random() * 2,
+        duration: 2.5 + Math.random() * 3.5,
+        delay: Math.random() * 4,
+      })),
+    []
+  );
+
   return (
-    <div className="bg-slate-950 min-h-screen flex flex-col justify-between">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-cyan-500/35 overflow-x-hidden relative">
+      <style>{`
+        @keyframes gradientMove {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(30px, -20px) scale(1.08); }
+          66% { transform: translate(-20px, 25px) scale(0.95); }
+        }
+        .gradient-move { animation: gradientMove 12s ease-in-out infinite; }
+        .gradient-move-delay { animation: gradientMove 12s ease-in-out infinite; animation-delay: -6s; }
+
+        @keyframes panGrid {
+          0% { background-position: 0 0; }
+          100% { background-position: 48px 48px; }
+        }
+        .pan-grid { animation: panGrid 6s linear infinite; }
+
+        @keyframes twinkle {
+          0%, 100% { opacity: 0; transform: scale(0.6); }
+          50% { opacity: 1; transform: scale(1); }
+        }
+        .twinkle { animation: twinkle ease-in-out infinite; }
+
+        .tilt-card:hover .tilt-glow {
+          opacity: 1;
+          background: radial-gradient(180px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(34,211,238,0.12), transparent 70%);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .gradient-move, .gradient-move-delay, .pan-grid, .twinkle {
+            animation: none !important;
+          }
+        }
+      `}</style>
+
+      {/* Background Animated Elements */}
+      <div className="pan-grid pointer-events-none absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(to right, #22d3ee 1px, transparent 1px), linear-gradient(to bottom, #22d3ee 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+      <div className="gradient-move absolute top-1/4 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="gradient-move-delay absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      {/* Twinkling Particles */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {particles.map((p) => (
+          <span
+            key={p.id}
+            className="twinkle absolute rounded-full bg-cyan-300"
+            style={{
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              animationDuration: `${p.duration}s`,
+              animationDelay: `${p.delay}s`,
+            }}
+          />
+        ))}
+      </div>
+
       <Navbar />
 
-      <main className="flex-grow py-16 px-6 md:px-12 max-w-6xl mx-auto w-full selection:bg-cyan-500/30">
-        {/* Title Container */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight inline-block relative after:absolute after:-bottom-3 after:left-1/2 after:transform after:-translate-x-1/2 after:w-16 after:h-1 after:bg-gradient-to-r after:from-cyan-400 after:to-blue-500">
-            My Services
-          </h1>
+      <main className="flex-grow max-w-6xl mx-auto w-full px-6 md:px-12 pt-10 md:pt-16 pb-20 relative z-20">
+        
+        {/* Title Container - Properly spaced */}
+        <div className="w-full mb-14 text-center lg:text-left pt-4">
+          <div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-widest mb-3">
+            <Terminal size={14} /> What I Offer
+          </div>
+          <div>
+            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight relative inline-block pb-3 after:absolute after:bottom-0 after:left-1/2 lg:after:left-0 after:transform after:-translate-x-1/2 lg:after:translate-x-0 after:w-20 after:h-1.5 after:bg-gradient-to-r after:from-cyan-400 after:to-blue-500 after:rounded-full">
+              My Services
+            </h1>
+          </div>
         </div>
 
-        {/* Dynamic Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Dynamic Grid with TiltCards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {customServices.map((value, i) => (
-            <div 
-              key={i} 
-              className="bg-slate-900/60 border border-slate-900 hover:border-slate-800 p-8 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between min-h-[300px]"
-            >
-              <div className="space-y-4">
-                <span className="text-sm font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                  {value.s_no}
-                </span>
-                <h2 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
-                  {value.s_name}
-                </h2>
-                <p className="text-slate-400 text-sm font-light leading-relaxed">
-                  {value.s_desc}
-                </p>
-              </div>
+            <Reveal key={i} delay={i * 100}>
+              <TiltCard className="h-full bg-slate-900/70 border border-slate-800 hover:border-cyan-500/40 p-8 rounded-2xl shadow-xl transition-colors duration-300 group flex flex-col justify-between min-h-[320px]">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-mono">
+                      {value.s_no}
+                    </span>
+                    <Sparkles size={16} className="text-cyan-400 opacity-50 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  
+                  <h2 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
+                    {value.s_name}
+                  </h2>
+                  
+                  <p className="text-slate-400 text-sm font-light leading-relaxed">
+                    {value.s_desc}
+                  </p>
+                </div>
 
-              <div className="pt-6 border-t border-slate-800/40 mt-6 flex items-center justify-between opacity-80 group-hover:opacity-100 transition-opacity">
-                <span className="text-xs font-bold uppercase tracking-widest text-slate-300 group-hover:text-white transition-colors">
-                  Read More
-                </span>
-                <img 
-                  src={arrowIcon} 
-                  alt="Arrow icon interaction trigger" 
-                  className="w-4 h-4 transform group-hover:translate-x-1 transition-transform filter invert brightness-200" 
-                />
-              </div>
-            </div>
+                <div className="pt-6 border-t border-slate-800/80 mt-6 flex items-center justify-between opacity-80 group-hover:opacity-100 transition-opacity">
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-300 group-hover:text-white transition-colors font-mono">
+                    Learn More
+                  </span>
+                  <img 
+                    src={arrowIcon} 
+                    alt="Arrow icon interaction trigger" 
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform filter invert brightness-200" 
+                  />
+                </div>
+              </TiltCard>
+            </Reveal>
           ))}
         </div>
       </main>

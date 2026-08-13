@@ -1,13 +1,17 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import CustomCursor from './component/CustomCursor/CustomCursor.jsx'; // Apne folder path ke mutabiq check kar lein
 
 function App() {
   return (
     <div className="relative min-h-screen bg-slate-950 text-slate-100 font-sans antialiased">
+      {/* Custom Mouse Cursor Component */}
+      <CustomCursor />
+
       {/* Iske andar saare pages (Hero, About, Services) render honge */}
       <Outlet />
-
-     
+      
+      {/* WhatsApp Floating Button */}
       <a
         href="https://wa.me/923484236919?text=Hi%20Ahmad,%20I%20visited%20your%20portfolio%20and%20want%20to%20discuss%20a%20project!"
         target="_blank"
@@ -18,7 +22,7 @@ function App() {
         {/* Pulsing Outer Radar Effect */}
         <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-40 animate-ping group-hover:hidden"></span>
         
-        {/* SVG WhatsApp Icon (Bina kisi FontAwesome package ki dependency ke) */}
+        {/* SVG WhatsApp Icon */}
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 448 512" 
