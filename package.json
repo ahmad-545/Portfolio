@@ -19,6 +19,7 @@
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-bootstrap": "^2.10.5",
     "react-dom": "^18.3.1",
+    "react-github-calendar": "^5.0.8",
     "react-router-dom": "^7.6.0",
     "react-toastify": "^11.1.0",
     "smooth-scrollbar": "^8.8.4",

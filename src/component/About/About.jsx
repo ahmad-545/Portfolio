@@ -2,7 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import pic from "../../assets/hero2.png";
 import Navbar from '../Navber/Navber';
 import Footer from '../Footer/Footer';
-import { Terminal, Code } from 'lucide-react';
+import { Terminal, Code, GitBranch } from 'lucide-react';
+import { GitHubCalendar } from 'react-github-calendar';
 
 /* ---------------------------------------------------------
    Small reusable hooks (matching Hero page animations)
@@ -279,6 +280,38 @@ export default function About() {
           </div>
 
         </div>
+
+        {/* GitHub Contributions Section */}
+        <Reveal delay={250} className="mb-16">
+          <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl">
+            <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+              <h3 className="text-xs sm:text-sm font-mono uppercase tracking-widest text-cyan-400 flex items-center gap-2">
+                <GitBranch size={16} /> GitHub Contributions & Activity
+              </h3>
+              <a 
+                href="https://github.com/ahmad-545" 
+                target="_blank" 
+                rel="noreferrer"
+                className="text-xs font-mono text-slate-400 hover:text-cyan-400 transition-colors"
+              >
+                @ahmad-545 on GitHub &rarr;
+              </a>
+            </div>
+            
+            <div className="overflow-x-auto flex justify-center py-2 bg-slate-950/50 p-4 rounded-xl border border-slate-900">
+              <GitHubCalendar 
+                username="ahmad-545" 
+                colorScheme="dark"
+                fontSize={13}
+                blockSize={12}
+                blockMargin={4}
+                theme={{
+                  dark: ['#090d16', '#0e4429', '#006d32', '#26a641', '#39d353'],
+                }}
+              />
+            </div>
+          </div>
+        </Reveal>
 
         {/* Counters / Stats Block */}
         <Reveal delay={300}>
