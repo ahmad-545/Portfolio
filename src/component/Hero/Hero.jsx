@@ -14,13 +14,30 @@ import {
   Award,
   Terminal,
   ExternalLink,
+  MessageSquare,
+  Cpu,
+  Layers,
+  Zap,
+  Globe,
 } from 'lucide-react';
 
+function GithubIcon({ className = 'w-3.5 h-3.5 text-emerald-400' }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+      />
+    </svg>
+  );
+}
+
 /* ---------------------------------------------------------
-   Small reusable hooks (no external libraries needed)
+   Custom Interactive Hooks
 --------------------------------------------------------- */
 
-function useTypewriter(words, { typingSpeed = 65, deletingSpeed = 35, pause = 1400 } = {}) {
+function useTypewriter(words, { typingSpeed = 50, deletingSpeed = 25, pause = 1600 } = {}) {
   const [index, setIndex] = useState(0);
   const [text, setText] = useState('');
   const [deleting, setDeleting] = useState(false);
@@ -69,7 +86,7 @@ function useReveal(threshold = 0.15) {
   return [ref, visible];
 }
 
-function useCountUp(target, visible, duration = 1200) {
+function useCountUp(target, visible, duration = 1400) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -79,7 +96,8 @@ function useCountUp(target, visible, duration = 1200) {
     const step = (ts) => {
       if (start === null) start = ts;
       const progress = Math.min((ts - start) / duration, 1);
-      setValue(Math.round(progress * target));
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(easeOut * target));
       if (progress < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
@@ -117,14 +135,14 @@ function TiltCard({ children, className = '' }) {
     const rotateY = (px - 0.5) * 10;
     const rotateX = (0.5 - py) * 10;
     setStyle({
-      transform: `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`,
+      transform: `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`,
       '--glow-x': `${px * 100}%`,
       '--glow-y': `${py * 100}%`,
     });
   };
 
   const handleLeave = () => {
-    setStyle({ transform: 'perspective(700px) rotateX(0deg) rotateY(0deg)' });
+    setStyle({ transform: 'perspective(800px) rotateX(0deg) rotateY(0deg)' });
   };
 
   return (
@@ -143,69 +161,110 @@ function TiltCard({ children, className = '' }) {
 
 const CODE_GLYPHS = [
   '</>',
-  '{ }',
-  '=>',
-  'const',
+  '{ Next.js }',
+  'const dev = true',
   'npm run dev',
-  'git commit',
+  'git push origin main',
   'async/await',
-  'SELECT *',
+  'MongoDB.connect()',
   'AI.predict()',
   '{ status: 200 }',
+  'export default App',
+  'useState<FullStack>()',
+  'API.endpoint()',
 ];
 
 const TECH_STACK = [
-  'React.js', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS',
-  'REST APIs', 'JavaScript (ES6+)', 'Docker', 'Git & GitHub', 'LLM Integrations',
+  { name: 'Next.js 15', tag: 'Full Stack' },
+  { name: 'React.js 18', tag: 'Frontend' },
+  { name: 'Node.js', tag: 'Backend' },
+  { name: 'Express.js', tag: 'APIs' },
+  { name: 'MongoDB', tag: 'Database' },
+  { name: 'Tailwind CSS', tag: 'Styling' },
+  { name: 'JavaScript (ES6+)', tag: 'Core' },
+  { name: 'REST & GraphQL', tag: 'Architecture' },
+  { name: 'AI & LLM Integrations', tag: 'Smart Apps' },
+  { name: 'Git & GitHub', tag: 'VCS' },
+  { name: 'Docker', tag: 'DevOps' },
+  { name: 'PostgreSQL', tag: 'SQL' },
 ];
 
 export default function Hero() {
+  const [activeCodeTab, setActiveCodeTab] = useState('stack');
+
   const role = useTypewriter(
     [
-      'MERN & Full-Stack Web Developer',
-      'React.js • Node.js • MongoDB',
-      'Building AI-Powered Web Apps',
-      'Turning Ideas Into Products',
+      'Full-Stack Developer (MERN & Next.js)',
+      'React.js • Next.js • Node.js • MongoDB',
+      'AI-Powered Modern Web Applications',
+      'Engineering Scalable & High-Speed Apps',
     ],
-    { typingSpeed: 55, deletingSpeed: 28, pause: 1500 }
+    { typingSpeed: 50, deletingSpeed: 25, pause: 1600 }
   );
 
   const skills = [
-    { name: "Frontend Architecture", icon: Code, desc: "Building scalable, high-performance UIs with React, Tailwind CSS, and modern JavaScript." },
-    { name: "Backend & APIs", icon: Server, desc: "Developing secure RESTful APIs, microservices, and handling server logic with Node.js & Express." },
-    { name: "Database Management", icon: Database, desc: "Expertise in database connection pooling, schema design using MongoDB and SQL." },
-    { name: "AI & Smart Agents", icon: Sparkles, desc: "Integrating LLMs, custom chatbots, and intelligent automation into web apps." }
+    {
+      name: "Frontend & Next.js",
+      icon: Code,
+      badge: "UI / UX & SSR",
+      desc: "Architecting lightning-fast user interfaces with Next.js, React 18, Tailwind CSS, and reactive state management."
+    },
+    {
+      name: "Backend & RESTful APIs",
+      icon: Server,
+      badge: "High Concurrency",
+      desc: "Developing secure RESTful endpoints, robust microservices, and high-performance server logic with Node.js and Express."
+    },
+    {
+      name: "Database Architecture",
+      icon: Database,
+      badge: "MongoDB & SQL",
+      desc: "Designing resilient schema models, connection pooling, optimized indexing, and smooth data workflows."
+    },
+    {
+      name: "AI & Smart Automation",
+      icon: Sparkles,
+      badge: "LLMs & Agents",
+      desc: "Integrating OpenAI models, custom intelligent chatbots, and AI workflow automation into web systems."
+    }
   ];
 
   const projects = [
     {
       title: "AI-Powered Virtual Try-On",
-      desc: "An advanced MERN stack web application enabling users to virtually try on clothing items using cutting-edge AI.",
+      desc: "An advanced MERN stack & AI web application enabling users to seamlessly try on clothing items virtually in real-time.",
       tag: "Full Stack / AI",
       link: "https://trylo.store/",
+      tech: ["Next.js", "React", "Node.js", "AI Model"]
     },
     {
       title: "AI Expense & Subscription Tracker",
-      desc: "A smart finance dashboard that tracks expenses, subscriptions and budgets, with an AI advisor that answers questions about your spending in plain English or Roman Urdu.",
+      desc: "Smart finance intelligence platform that tracks recurring subscriptions and budgets, with an interactive Roman Urdu/English AI advisor.",
       tag: "Full Stack / AI",
       link: "https://expense-or-subcribtion-traker.vercel.app/",
+      tech: ["React", "Express", "MongoDB", "OpenAI"]
     },
     {
       title: "Trylo Premium E-Commerce",
-      desc: "A feature-rich online retail platform complete with secure checkout, dynamic product management, and admin dashboard.",
+      desc: "Comprehensive online shopping platform featuring secure multi-vendor checkouts, dynamic cart management, and admin console.",
       tag: "MERN Stack",
       link: null,
+      tech: ["React", "Node.js", "Express", "Stripe"]
     },
     {
-      title: "Database Connection Pooler",
-      desc: "High-efficiency backend utility optimized for managing heavy concurrent database queries across MongoDB and MySQL.",
+      title: "High-Speed Connection Pooler",
+      desc: "High-efficiency backend utility optimized for handling heavy concurrent database queries across MongoDB clusters.",
       tag: "Backend Engineering",
       link: null,
+      tech: ["Node.js", "MongoDB", "Redis", "Docker"]
     }
   ];
 
-  const [statsRef, statsVisible] = useReveal(0.3);
-  const dedication = useCountUp(100, statsVisible);
+  const [statsRef, statsVisible] = useReveal(0.2);
+  const yearsExp = useCountUp(1, statsVisible);
+  const projectsCount = useCountUp(80, statsVisible);
+  const clientsCount = useCountUp(10, statsVisible);
+  const codeQuality = useCountUp(100, statsVisible);
 
   const heroRef = useRef(null);
   const [spot, setSpot] = useState({ x: 50, y: 40 });
@@ -221,47 +280,71 @@ export default function Hero() {
 
   const particles = useMemo(
     () =>
-      Array.from({ length: 26 }).map((_, i) => ({
+      Array.from({ length: 28 }).map((_, i) => ({
         id: i,
         left: Math.random() * 100,
         top: Math.random() * 100,
-        size: 1 + Math.random() * 2,
-        duration: 2.5 + Math.random() * 3.5,
-        delay: Math.random() * 4,
+        size: 1 + Math.random() * 2.5,
+        duration: 3 + Math.random() * 4,
+        delay: Math.random() * 5,
       })),
     []
   );
 
   return (
-    <div className="bg-slate-950 min-h-screen flex flex-col justify-between selection:bg-cyan-500/35 text-slate-100 font-sans overflow-x-hidden">
+    <div className="bg-slate-950 min-h-screen flex flex-col justify-between selection:bg-emerald-500/30 selection:text-emerald-200 text-slate-100 font-sans overflow-x-hidden">
       <style>{`
         @keyframes blinkCursor { 0%, 45% { opacity: 1; } 50%, 100% { opacity: 0; } }
         .cursor-blink { animation: blinkCursor 1s steps(1) infinite; }
 
         @keyframes floatCode {
           0%   { transform: translateY(0) rotate(var(--rot, 0deg)); opacity: 0; }
-          10%  { opacity: 0.5; }
-          90%  { opacity: 0.5; }
-          100% { transform: translateY(-120px) rotate(var(--rot, 0deg)); opacity: 0; }
+          12%  { opacity: 0.45; }
+          88%  { opacity: 0.45; }
+          100% { transform: translateY(-130px) rotate(var(--rot, 0deg)); opacity: 0; }
         }
         .float-code { animation: floatCode linear infinite; }
 
-        @keyframes floatBob {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-14px) rotate(1.5deg); }
+        @keyframes floatGentle {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-12px) rotate(1.2deg); }
         }
-        .float-bob { animation: floatBob 5s ease-in-out infinite; }
+        .float-gentle { animation: floatGentle 5s ease-in-out infinite; }
+
+        @keyframes floatBadge1 {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(-8px, -14px); }
+        }
+        .float-badge-1 { animation: floatBadge1 4.5s ease-in-out infinite; }
+
+        @keyframes floatBadge2 {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(10px, -12px); }
+        }
+        .float-badge-2 { animation: floatBadge2 5.5s ease-in-out infinite; }
+
+        @keyframes floatBadge3 {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(-10px, 10px); }
+        }
+        .float-badge-3 { animation: floatBadge3 6s ease-in-out infinite; }
 
         @keyframes spinSlow {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-        .spin-slow { animation: spinSlow 14s linear infinite; }
+        .spin-slow { animation: spinSlow 12s linear infinite; }
+
+        @keyframes spinSlowReverse {
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
+        }
+        .spin-slow-reverse { animation: spinSlowReverse 18s linear infinite; }
 
         @keyframes gradientMove {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -20px) scale(1.08); }
-          66% { transform: translate(-20px, 25px) scale(0.95); }
+          33% { transform: translate(35px, -25px) scale(1.1); }
+          66% { transform: translate(-25px, 30px) scale(0.92); }
         }
         .gradient-move { animation: gradientMove 12s ease-in-out infinite; }
         .gradient-move-delay { animation: gradientMove 12s ease-in-out infinite; animation-delay: -6s; }
@@ -270,7 +353,7 @@ export default function Hero() {
           0% { transform: translateY(-100%); }
           100% { transform: translateY(100%); }
         }
-        .animate-scanline { animation: scanline 6s linear infinite; }
+        .animate-scanline { animation: scanline 5s linear infinite; }
 
         @keyframes panGrid {
           0% { background-position: 0 0; }
@@ -279,8 +362,8 @@ export default function Hero() {
         .pan-grid { animation: panGrid 6s linear infinite; }
 
         @keyframes twinkle {
-          0%, 100% { opacity: 0; transform: scale(0.6); }
-          50% { opacity: 1; transform: scale(1); }
+          0%, 100% { opacity: 0.1; transform: scale(0.5); }
+          50% { opacity: 1; transform: scale(1.2); }
         }
         .twinkle { animation: twinkle ease-in-out infinite; }
 
@@ -288,21 +371,30 @@ export default function Hero() {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-        .animate-marquee { animation: marquee 22s linear infinite; }
+        .animate-marquee { animation: marquee 24s linear infinite; }
+        .animate-marquee:hover { animation-play-state: paused; }
 
         @keyframes pulseRing {
-          0% { box-shadow: 0 0 0 0 rgba(34,211,238,0.45); }
-          100% { box-shadow: 0 0 0 14px rgba(34,211,238,0); }
+          0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
+          100% { box-shadow: 0 0 0 16px rgba(52,211,153,0); }
         }
-        .pulse-ring { animation: pulseRing 1.8s ease-out infinite; }
+        .pulse-ring { animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
         .tilt-card:hover .tilt-glow {
           opacity: 1;
-          background: radial-gradient(180px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(34,211,238,0.12), transparent 70%);
+          background: radial-gradient(220px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(52,211,153,0.15), transparent 70%);
+        }
+
+        .cyber-glass {
+          background: rgba(10, 20, 16, 0.78);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(52, 211, 153, 0.15);
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .float-code, .float-bob, .spin-slow, .gradient-move, .gradient-move-delay,
+          .float-code, .float-gentle, .float-badge-1, .float-badge-2, .float-badge-3,
+          .spin-slow, .spin-slow-reverse, .gradient-move, .gradient-move-delay,
           .animate-scanline, .pan-grid, .twinkle, .animate-marquee, .pulse-ring, .cursor-blink {
             animation: none !important;
           }
@@ -311,37 +403,48 @@ export default function Hero() {
 
       <Navbar />
 
-      {/* 1. HERO SECTION */}
+      {/* =========================================================================
+          1. HERO SECTION - ULTRA MODERN REDESIGN & RICH ANIMATIONS
+      ========================================================================= */}
       <section
         ref={heroRef}
         onMouseMove={handleHeroMove}
-        className="min-h-[92vh] flex items-center justify-center relative overflow-hidden py-20 px-6 md:px-12"
+        className="min-h-[96vh] flex items-center justify-center relative overflow-hidden pt-28 pb-16 md:pt-32 md:pb-24 px-6 md:px-12"
       >
+        {/* Dynamic Mouse Tracking Spotlight */}
         <div
           className="pointer-events-none absolute inset-0 transition-opacity duration-300"
           style={{
-            background: `radial-gradient(420px circle at ${spot.x}% ${spot.y}%, rgba(34,211,238,0.07), transparent 70%)`,
+            background: `radial-gradient(550px circle at ${spot.x}% ${spot.y}%, rgba(52,211,153,0.14), rgba(16,185,129,0.04) 40%, transparent 75%)`,
           }}
         />
 
+        {/* Ambient Glowing Aurora Blobs */}
+        <div className="gradient-move absolute top-1/4 left-10 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="gradient-move-delay absolute bottom-1/4 right-10 w-[28rem] h-[28rem] bg-teal-600/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="gradient-move absolute top-1/2 left-1/3 w-80 h-80 bg-green-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Cyber Matrix Grid */}
         <div
-          className="pan-grid pointer-events-none absolute inset-0 opacity-[0.07]"
+          className="pan-grid pointer-events-none absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage:
-              'linear-gradient(to right, #22d3ee 1px, transparent 1px), linear-gradient(to bottom, #22d3ee 1px, transparent 1px)',
+              'linear-gradient(to right, #10b981 1px, transparent 1px), linear-gradient(to bottom, #10b981 1px, transparent 1px)',
             backgroundSize: '48px 48px',
           }}
         />
 
-        <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.05]">
-          <div className="animate-scanline absolute inset-x-0 h-40 bg-gradient-to-b from-transparent via-cyan-300 to-transparent" />
+        {/* Cyber Scanning Beam */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.04]">
+          <div className="animate-scanline absolute inset-x-0 h-44 bg-gradient-to-b from-transparent via-emerald-400 to-transparent" />
         </div>
 
+        {/* Twinkling Particle Constellation */}
         <div className="pointer-events-none absolute inset-0">
           {particles.map((p) => (
             <span
               key={p.id}
-              className="twinkle absolute rounded-full bg-cyan-300"
+              className="twinkle absolute rounded-full bg-emerald-300 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
               style={{
                 left: `${p.left}%`,
                 top: `${p.top}%`,
@@ -354,19 +457,17 @@ export default function Hero() {
           ))}
         </div>
 
-        <div className="gradient-move absolute top-1/4 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="gradient-move-delay absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
+        {/* Floating Developer Code Badges in Background */}
         <div className="pointer-events-none absolute inset-0 hidden sm:block">
           {CODE_GLYPHS.map((glyph, i) => {
-            const left = (i * 37) % 100;
-            const duration = 10 + (i % 5) * 2;
-            const delay = -(i * 1.7);
-            const rot = (i % 2 === 0 ? 1 : -1) * (4 + (i % 3) * 3);
+            const left = (i * 31 + 7) % 94;
+            const duration = 11 + (i % 4) * 2.5;
+            const delay = -(i * 1.6);
+            const rot = (i % 2 === 0 ? 1 : -1) * (5 + (i % 3) * 4);
             return (
               <span
                 key={glyph}
-                className="float-code absolute font-mono text-cyan-400/40 text-xs sm:text-sm select-none"
+                className="float-code absolute font-mono text-emerald-400/35 text-xs sm:text-sm select-none px-2.5 py-1 rounded-md bg-slate-900/40 border border-emerald-500/10 backdrop-blur-xs"
                 style={{
                   left: `${left}%`,
                   bottom: '-10%',
@@ -381,136 +482,320 @@ export default function Hero() {
           })}
         </div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-          <div className="lg:col-span-7 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono mb-6 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-              <span className="text-slate-500">$</span> status --available
-              <span className="text-cyan-300">true</span>
-              <span className="cursor-blink text-cyan-300">▍</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-tight mb-4 text-white">
-              Hi, I'm{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">
-                Muhammad Ahmad
+        {/* Main Content Grid */}
+        <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+          
+          {/* ================= LEFT COLUMN: HERO TEXT & CTAs ================= */}
+          <div className="lg:col-span-7 text-center lg:text-left space-y-6">
+            
+            {/* Live Status Pill with Radar Pulse */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/80 border border-emerald-500/30 text-xs font-mono text-emerald-300 shadow-[0_0_20px_rgba(52,211,153,0.15)] backdrop-blur-md">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </span>
-            </h1>
-
-            <p className="text-lg sm:text-2xl font-semibold text-slate-300 mb-4 tracking-wide font-mono min-h-[2.5rem]">
-              <span className="text-cyan-400">&gt;</span> {role}
-              <span className="cursor-blink text-cyan-300">▍</span>
-            </p>
-
-            <p className="text-slate-400 text-base sm:text-lg font-light leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-              I transform complex requirements into clean, high-performance web applications. Specializing in modern React frontends, robust Node.js backends, and smart AI integrations.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
-              <Link
-                to="/Contact"
-                className="pulse-ring group relative w-full sm:w-auto overflow-hidden px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold tracking-wider rounded-xl shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:from-cyan-400 hover:to-blue-500 transition-all transform hover:-translate-y-0.5 text-center text-sm uppercase"
-              >
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-                <span className="relative flex items-center justify-center gap-2">Let's Talk <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></span>
-              </Link>
-              <Link
-                to="/resume"
-                className="group w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-semibold tracking-wider rounded-xl border border-slate-800 hover:border-cyan-500/40 transition-all text-center text-sm uppercase flex items-center justify-center gap-2 hover:-translate-y-0.5"
-              >
-                <Terminal size={16} className="text-cyan-400 transition-transform group-hover:scale-110" /> View Resume
-              </Link>
+              <span className="text-slate-400 font-semibold">AVAILABLE FOR NEW PROJECTS</span>
+              <span className="hidden sm:inline text-slate-600">|</span>
+              <span className="hidden sm:inline text-emerald-400 font-bold">FULL-STACK & NEXT.JS</span>
             </div>
-          </div>
 
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative group float-bob">
-              <div className="spin-slow absolute -inset-3 rounded-[2rem] bg-[conic-gradient(from_0deg,#22d3ee,#3b82f6,#22d3ee)] opacity-40 blur-md pointer-events-none"></div>
-              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-3xl blur-xl opacity-50 group-hover:opacity-80 transition duration-500"></div>
-              <div className="relative bg-slate-900 border border-slate-800 rounded-3xl p-3 shadow-2xl overflow-hidden">
-                <img
-                  src={pic}
-                  alt="Muhammad Ahmad"
-                  className="w-64 h-64 sm:w-80 sm:h-80 rounded-2xl object-cover transform group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="pointer-events-none absolute inset-3 overflow-hidden rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute inset-x-0 h-1/3 bg-gradient-to-b from-cyan-300/0 via-cyan-300/25 to-cyan-300/0 animate-scanline" />
+            {/* Main Greeting & Name Headline */}
+            <div>
+              <p className="text-sm md:text-base font-mono text-emerald-400 uppercase tracking-widest mb-2 flex items-center justify-center lg:justify-start gap-2">
+                <Terminal size={16} /> Hello, World! I am
+              </p>
+              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black tracking-tight leading-none text-white">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300">
+                  Muhammad
+                </span>{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-green-400 drop-shadow-[0_0_35px_rgba(52,211,153,0.25)]">
+                  Ahmad
+                </span>
+              </h1>
+            </div>
+
+            {/* Dynamic Interactive Typewriter Console */}
+            <div className="inline-block w-full">
+              <div className="p-3 sm:p-4 rounded-xl bg-slate-900/70 border border-slate-800/90 backdrop-blur-md shadow-inner">
+                <div className="flex items-center gap-2 text-slate-500 text-xs font-mono mb-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                  <span className="ml-2 text-slate-400">~/ahmad/developer.ts</span>
                 </div>
+                <p className="text-base sm:text-xl md:text-2xl font-bold font-mono text-slate-200 tracking-tight flex items-center justify-center lg:justify-start min-h-[2rem]">
+                  <span className="text-emerald-400 mr-2 font-black">&gt;</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-green-400">
+                    {role}
+                  </span>
+                  <span className="cursor-blink text-emerald-400 ml-1 font-bold">▍</span>
+                </p>
               </div>
             </div>
+
+            {/* Elevator Pitch Subtitle */}
+            <p className="text-slate-300 text-base sm:text-lg font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
+              Transforming innovative ideas into scale-ready web platforms. Specializing in <span className="text-emerald-400 font-semibold">Next.js & React</span> frontend engineering, resilient <span className="text-teal-300 font-semibold">Node.js / Express</span> backend APIs, and smart <span className="text-green-400 font-semibold">AI integrations</span>.
+            </p>
+
+            {/* Quick Action Buttons (CTAs) */}
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start pt-2">
+              {/* Primary Glowing Button */}
+              <Link
+                to="/Contact"
+                className="pulse-ring group relative w-full sm:w-auto overflow-hidden px-8 py-4 bg-gradient-to-r from-emerald-400 via-teal-300 to-green-500 text-slate-950 font-black tracking-wider rounded-xl shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/50 hover:scale-105 active:scale-95 transition-all duration-300 text-center text-sm uppercase flex items-center justify-center gap-2"
+              >
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                <span className="relative flex items-center justify-center gap-2">
+                  <Zap size={18} className="fill-current text-slate-950" />
+                  Let's Talk Projects
+                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+
+              {/* Secondary Projects Button */}
+              <Link
+                to="/work"
+                className="group w-full sm:w-auto px-7 py-4 bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white font-bold tracking-wider rounded-xl border border-slate-700 hover:border-emerald-400/50 shadow-lg hover:shadow-emerald-500/15 hover:scale-105 active:scale-95 transition-all duration-300 text-center text-sm uppercase flex items-center justify-center gap-2"
+              >
+                <Briefcase size={16} className="text-emerald-400 group-hover:rotate-12 transition-transform" />
+                Explore Work
+              </Link>
+
+              {/* Resume Button */}
+              <Link
+                to="/resume"
+                className="group w-full sm:w-auto px-6 py-4 bg-slate-950/80 hover:bg-slate-900 text-slate-300 hover:text-emerald-300 font-semibold tracking-wider rounded-xl border border-slate-800 hover:border-emerald-500/30 transition-all text-center text-sm uppercase flex items-center justify-center gap-2"
+              >
+                <Terminal size={16} className="text-emerald-400" /> Resume
+              </Link>
+            </div>
+
+            {/* Quick Social / Connect Badges */}
+            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-mono text-slate-400">
+              <a
+                href="https://github.com/ahmad-545"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 hover:text-emerald-300 transition-all"
+              >
+                <GithubIcon className="w-3.5 h-3.5 text-emerald-400" />
+                github.com/ahmad-545
+              </a>
+              <a
+                href="https://wa.me/923484236919?text=Hi%20Ahmad,%20I%20saw%20your%20portfolio!"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 hover:text-emerald-300 transition-all"
+              >
+                <MessageSquare size={14} className="text-emerald-400" />
+                WhatsApp Direct
+              </a>
+            </div>
+
           </div>
+
+          {/* ================= RIGHT COLUMN: FUTURISTIC 3D DEVELOPER SHOWCASE ================= */}
+          <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
+            
+            {/* Interactive Outer Visual Container with Float Physics */}
+            <div className="relative group float-gentle w-full max-w-sm sm:max-w-md mx-auto">
+              
+              {/* Rotating Holographic Conic Glow Ring */}
+              <div className="spin-slow absolute -inset-4 rounded-[2.5rem] bg-[conic-gradient(from_0deg,#10b981,#34d399,#059669,#10b981)] opacity-50 blur-xl group-hover:opacity-75 transition duration-700 pointer-events-none" />
+              <div className="spin-slow-reverse absolute -inset-2 rounded-[2.5rem] bg-[conic-gradient(from_180deg,#34d399,#6ee7b7,#059669,#34d399)] opacity-30 blur-md pointer-events-none" />
+
+              {/* Main Card Frame */}
+              <div className="relative bg-slate-900/90 border border-slate-700/80 rounded-3xl p-3.5 shadow-2xl overflow-hidden backdrop-blur-xl">
+                
+                {/* Developer Avatar with Holographic Overlay */}
+                <div className="relative rounded-2xl overflow-hidden bg-slate-950 aspect-square sm:aspect-[4/4.5] flex items-center justify-center">
+                  <img
+                    src={pic}
+                    alt="Muhammad Ahmad - Full Stack Developer"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 filter brightness-95 group-hover:brightness-105"
+                  />
+
+                  {/* Laser Scanline Beam on Hover */}
+                  <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-x-0 h-1/3 bg-gradient-to-b from-emerald-400/0 via-emerald-400/30 to-emerald-400/0 animate-scanline" />
+                  </div>
+
+                  {/* Corner Tech Accents */}
+                  <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-emerald-400 pointer-events-none"></div>
+                  <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-emerald-400 pointer-events-none"></div>
+                  <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-emerald-400 pointer-events-none"></div>
+                  <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-emerald-400 pointer-events-none"></div>
+
+                  {/* Bottom Avatar Status Card */}
+                  <div className="absolute bottom-3 inset-x-3 p-2.5 rounded-xl bg-slate-950/85 border border-slate-800/90 backdrop-blur-md flex items-center justify-between shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                      <span className="text-xs font-mono font-bold text-slate-200">Muhammad Ahmad</span>
+                    </div>
+                    <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      MERN & NEXT.JS
+                    </span>
+                  </div>
+                </div>
+
+                {/* Floating Orbit Tech Badges */}
+                {/* Top-Left: Next.js & React */}
+                <div className="float-badge-1 absolute -top-4 -left-4 z-20 px-3 py-1.5 rounded-xl cyber-glass border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold shadow-xl shadow-emerald-500/10 flex items-center gap-1.5 hover:scale-110 transition-transform">
+                  <span className="text-sm">▲</span> Next.js & React 18
+                </div>
+
+                {/* Top-Right: Full Stack */}
+                <div className="float-badge-2 absolute -top-3 -right-3 z-20 px-3 py-1.5 rounded-xl cyber-glass border border-teal-500/40 text-teal-300 text-xs font-mono font-bold shadow-xl shadow-teal-500/10 flex items-center gap-1.5 hover:scale-110 transition-transform">
+                  <Cpu size={14} className="text-teal-400" /> Full Stack MERN
+                </div>
+
+                {/* Bottom-Right: AI Integrations */}
+                <div className="float-badge-3 absolute -bottom-3 -right-3 z-20 px-3 py-1.5 rounded-xl cyber-glass border border-green-500/40 text-green-300 text-xs font-mono font-bold shadow-xl shadow-green-500/10 flex items-center gap-1.5 hover:scale-110 transition-transform">
+                  <Sparkles size={14} className="text-green-400" /> AI & Smart APIs
+                </div>
+              </div>
+
+              {/* Live Mini Code Console Below Avatar */}
+              <div className="mt-4 p-3 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl backdrop-blur-md">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-2 mb-2 border-b border-slate-800">
+                  <div className="flex gap-1.5">
+                    <button
+                      onClick={() => setActiveCodeTab('stack')}
+                      className={`px-2 py-0.5 rounded ${activeCodeTab === 'stack' ? 'bg-emerald-500/20 text-emerald-300' : 'hover:text-slate-200'}`}
+                    >
+                      Stack.json
+                    </button>
+                    <button
+                      onClick={() => setActiveCodeTab('metrics')}
+                      className={`px-2 py-0.5 rounded ${activeCodeTab === 'metrics' ? 'bg-emerald-500/20 text-emerald-300' : 'hover:text-slate-200'}`}
+                    >
+                      Metrics.ts
+                    </button>
+                  </div>
+                  <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    ACTIVE
+                  </span>
+                </div>
+
+                {activeCodeTab === 'stack' ? (
+                  <pre className="text-[11px] sm:text-xs font-mono text-slate-300 leading-relaxed overflow-x-auto">
+                    <code>
+                      <span className="text-emerald-400">const</span> developer = &#123;{'\n'}
+                      {'  '}core: [<span className="text-emerald-300">"Next.js"</span>, <span className="text-teal-300">"React"</span>, <span className="text-green-300">"Node.js"</span>],{'\n'}
+                      {'  '}database: <span className="text-emerald-300">"MongoDB & PostgreSQL"</span>,{'\n'}
+                      {'  '}mindset: <span className="text-teal-300">"Clean Code & Performance"</span>{'\n'}
+                      &#125;;
+                    </code>
+                  </pre>
+                ) : (
+                  <pre className="text-[11px] sm:text-xs font-mono text-slate-300 leading-relaxed overflow-x-auto">
+                    <code>
+                      <span className="text-emerald-400">export const</span> metrics = &#123;{'\n'}
+                      {'  '}projectsCompleted: <span className="text-amber-300">"80+"</span>,{'\n'}
+                      {'  '}clientSatisfaction: <span className="text-emerald-300">"100%"</span>,{'\n'}
+                      {'  '}deliverySpeed: <span className="text-emerald-300">"Lightning Fast"</span>{'\n'}
+                      &#125;;
+                    </code>
+                  </pre>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
       </section>
 
-      {/* TECH STACK MARQUEE */}
-      <section className="relative py-6 border-y border-slate-900 bg-slate-950 overflow-hidden">
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
+      {/* =========================================================================
+          2. TECH STACK INFINITE MARQUEE WITH GLOW BADGES
+      ========================================================================= */}
+      <section className="relative py-7 border-y border-slate-900 bg-slate-950/90 overflow-hidden backdrop-blur-md">
+        <div className="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
+        
         <div className="flex w-max animate-marquee">
           {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
-            <span
+            <div
               key={i}
-              className="flex items-center gap-2 mx-4 px-4 py-2 rounded-lg bg-slate-900/60 border border-slate-800 text-slate-400 text-xs font-mono whitespace-nowrap"
+              className="flex items-center gap-2.5 mx-3 px-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800/80 hover:border-emerald-500/40 text-slate-300 hover:text-white text-xs font-mono whitespace-nowrap shadow-sm hover:shadow-emerald-500/10 transition-all duration-300 group cursor-default"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" /> {tech}
-            </span>
+              <span className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-400 to-green-500 group-hover:scale-125 transition-transform" />
+              <span className="font-semibold">{tech.name}</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-emerald-400 font-sans">
+                {tech.tag}
+              </span>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* QUICK STATS / HIGHLIGHTS BAR */}
-      <section ref={statsRef} className="py-10 border-y border-slate-900 bg-slate-900/40">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      {/* =========================================================================
+          3. STATS & KEY IMPACT HIGHLIGHTS
+      ========================================================================= */}
+      <section ref={statsRef} className="py-14 border-b border-slate-900 bg-slate-900/30">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {[
-            { value: `${dedication}%`, label: 'Client Dedication', color: 'text-cyan-400', Icon: Award },
-            { value: 'MERN', label: 'Stack Expertise', color: 'text-white', Icon: Code },
-            { value: 'AI', label: 'Integration Ready', color: 'text-cyan-400', Icon: Sparkles },
-            { value: '24/7', label: 'Problem Solving', color: 'text-white', Icon: Terminal },
+            { value: `${yearsExp}+`, label: 'Years Experience', sub: 'Industry Standard', color: 'from-emerald-400 to-teal-300', Icon: Award },
+            { value: `${projectsCount}+`, label: 'Projects Completed', sub: 'MERN & Full-Stack', color: 'from-teal-300 to-green-400', Icon: Code },
+            { value: `${clientsCount}+`, label: 'Satisfied Clients', sub: 'Global Collaborations', color: 'from-green-400 to-emerald-400', Icon: Globe },
+            { value: `${codeQuality}%`, label: 'Code Quality & Dedication', sub: 'Clean Architecture', color: 'from-emerald-400 to-green-500', Icon: Sparkles },
           ].map((stat, i) => (
             <div
               key={stat.label}
-              style={{ transitionDelay: `${i * 100}ms` }}
-              className={`p-4 transition-all duration-700 ease-out ${
-                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              style={{ transitionDelay: `${i * 120}ms` }}
+              className={`p-6 rounded-2xl bg-slate-900/40 border border-slate-800/70 hover:border-emerald-500/30 transition-all duration-700 ease-out hover:-translate-y-1 shadow-lg ${
+                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              <stat.Icon size={18} className={`mx-auto mb-2 ${stat.color} opacity-70`} />
-              <h3 className={`text-3xl sm:text-4xl font-extrabold mb-1 ${stat.color}`}>{stat.value}</h3>
-              <p className="text-slate-400 text-xs sm:text-sm tracking-wide uppercase">{stat.label}</p>
+              <stat.Icon size={20} className="mx-auto mb-3 text-emerald-400 opacity-80" />
+              <h3 className={`text-4xl sm:text-5xl font-black mb-1.5 text-transparent bg-clip-text bg-gradient-to-r ${stat.color}`}>
+                {stat.value}
+              </h3>
+              <p className="text-slate-200 text-xs sm:text-sm font-bold tracking-wide uppercase font-mono">{stat.label}</p>
+              <p className="text-slate-500 text-[11px] mt-1 font-sans">{stat.sub}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 2. ABOUT ME SECTION */}
+      {/* =========================================================================
+          4. ABOUT ME HIGHLIGHT / PHILOSOPHY
+      ========================================================================= */}
       <section className="relative py-24 px-6 md:px-12 bg-slate-950 overflow-hidden">
-        <pre className="pointer-events-none select-none absolute inset-0 flex items-center justify-center opacity-[0.04] font-mono text-xs sm:text-sm leading-6 text-cyan-300 whitespace-pre">
-{`const developer = {
-  name: "Muhammad Ahmad",
-  role: "Full-Stack Engineer",
-  stack: ["React", "Node.js", "MongoDB", "AI"],
-  mindset: () => "clean code, scalable systems",
-};`}
-        </pre>
-
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <Reveal>
-            <div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-widest mb-3">
+            <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-3">
               <Terminal size={14} /> Background & Philosophy
             </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-6 text-white">Engineering with Purpose</h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full mb-8"></div>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-white">
+              Engineering with Scalability & Purpose
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-green-500 mx-auto rounded-full mb-8"></div>
           </Reveal>
+          
           <Reveal delay={100}>
-            <p className="text-slate-300 text-base md:text-lg leading-relaxed font-light mb-6">
-              I am a dedicated full-stack developer who thrives at the intersection of design and clean backend logic. My approach focuses on building robust architectures that scale effortlessly while delivering crisp, highly responsive user experiences.
+            <p className="text-slate-300 text-base md:text-lg leading-relaxed font-light mb-8">
+              I am a dedicated full-stack developer who thrives at the intersection of slick interactive interfaces and robust server architectures. Whether engineering real-time data pipelines in Node.js or crafting responsive, SEO-ready web applications with Next.js & React, my approach guarantees speed, scalability, and code clarity.
             </p>
           </Reveal>
+
           <Reveal delay={180}>
             <div className="flex flex-wrap justify-center gap-3 pt-2">
-              {["Clean Code", "Performance Optimization", "Scalable Architecture", "UI/UX Focus"].map((badge, i) => (
-                <span key={i} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/40 hover:-translate-y-0.5 transition-all text-slate-300 text-xs font-medium">
-                  <CheckCircle2 size={14} className="text-cyan-400" /> {badge}
+              {[
+                "Next.js & SSR Ready",
+                "Scalable Microservices",
+                "Clean & Documented Code",
+                "Performance First Mindset",
+                "AI/LLM Integration"
+              ].map((badge, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all text-slate-300 text-xs font-medium shadow-sm"
+                >
+                  <CheckCircle2 size={14} className="text-emerald-400" /> {badge}
                 </span>
               ))}
             </div>
@@ -518,24 +803,38 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* 3. SKILLS / CORE EXPERTISE */}
+      {/* =========================================================================
+          5. CORE EXPERTISE / SERVICES SUMMARY
+      ========================================================================= */}
       <section className="py-24 px-6 md:px-12 border-t border-slate-900 bg-slate-900/20">
         <div className="max-w-6xl mx-auto">
           <Reveal className="text-center mb-16">
-            <span className="text-cyan-400 text-xs font-mono uppercase tracking-widest block mb-2">What I Do Best</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">Core Expertise</h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
+            <span className="text-emerald-400 text-xs font-mono uppercase tracking-widest block mb-2">What I Do Best</span>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white mb-4">Core Technical Expertise</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 to-green-500 mx-auto rounded-full"></div>
           </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {skills.map((skill, index) => (
               <Reveal key={index} delay={index * 90}>
-                <TiltCard className="h-full p-8 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-cyan-500/40 transition-colors duration-300 group">
-                  <div className="w-14 h-14 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all duration-300">
-                    <skill.icon size={28} />
+                <TiltCard className="h-full p-7 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 group flex flex-col justify-between shadow-xl">
+                  <div>
+                    <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-emerald-400 group-hover:to-green-600 group-hover:text-slate-950 transition-all duration-300 shadow-md">
+                      <skill.icon size={26} />
+                    </div>
+                    <div className="inline-block text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md mb-3 border border-emerald-500/20">
+                      {skill.badge}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                      {skill.name}
+                    </h3>
+                    <p className="text-slate-400 text-sm leading-relaxed">
+                      {skill.desc}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{skill.name}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{skill.desc}</p>
+                  <div className="pt-5 mt-4 border-t border-slate-800/80 flex items-center text-xs font-mono text-emerald-400 group-hover:translate-x-1 transition-transform">
+                    <span>Explore services &rarr;</span>
+                  </div>
                 </TiltCard>
               </Reveal>
             ))}
@@ -543,48 +842,70 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* 4. FEATURED PROJECTS */}
+      {/* =========================================================================
+          6. FEATURED PROJECTS SHOWCASE
+      ========================================================================= */}
       <section className="py-24 px-6 md:px-12 border-t border-slate-900 bg-slate-950">
         <div className="max-w-6xl mx-auto">
           <Reveal className="flex flex-col md:flex-row md:items-end justify-between mb-16">
             <div>
-              <span className="inline-flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-widest mb-2">
+              <span className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-2">
                 <Briefcase size={14} /> Portfolio Showcase
               </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">Featured Projects</h2>
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white">Featured Projects</h2>
             </div>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4 md:mt-0"></div>
+            <Link
+              to="/work"
+              className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-mono mt-4 md:mt-0 font-semibold group"
+            >
+              View Full Work Archive <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
           </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {projects.map((proj, idx) => (
               <Reveal key={idx} delay={idx * 90}>
-                <TiltCard className="h-full bg-slate-900/60 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between hover:border-cyan-500/40 transition-colors duration-300 group">
+                <TiltCard className="h-full bg-slate-900/60 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between hover:border-emerald-500/40 transition-colors duration-300 group shadow-2xl">
                   <div>
-                    <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 bg-cyan-500/10 px-3.5 py-1.5 rounded-full inline-block mb-6 font-semibold">
-                      {proj.tag}
-                    </span>
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+                    <div className="flex items-center justify-between gap-2 mb-6">
+                      <span className="text-xs font-mono uppercase tracking-wider text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-1.5 rounded-full font-bold">
+                        {proj.tag}
+                      </span>
+                      <div className="flex gap-1.5">
+                        {proj.tech.map((t, ti) => (
+                          <span key={ti} className="text-[10px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">
                       {proj.title}
                     </h3>
                     <p className="text-slate-400 text-sm mb-8 leading-relaxed">
                       {proj.desc}
                     </p>
                   </div>
-                  <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
-                    <span className="text-xs text-slate-500 font-mono">Production Ready</span>
+
+                  <div className="pt-5 border-t border-slate-800 flex items-center justify-between">
+                    <span className="text-xs text-slate-500 font-mono flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Production Grade
+                    </span>
                     {proj.link ? (
                       <a
                         href={proj.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-cyan-400 hover:text-cyan-300 text-sm font-semibold flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
+                        className="text-emerald-400 hover:text-emerald-300 text-sm font-bold flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
                       >
-                        Live Demo <ExternalLink size={16} />
+                        Live Demo <ExternalLink size={15} />
                       </a>
                     ) : (
-                      <Link to="/Contact" className="text-cyan-400 hover:text-cyan-300 text-sm font-semibold flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
-                        Explore <ArrowRight size={16} />
+                      <Link
+                        to="/Contact"
+                        className="text-emerald-400 hover:text-emerald-300 text-sm font-bold flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
+                      >
+                        Discuss Details <ArrowRight size={15} />
                       </Link>
                     )}
                   </div>
@@ -595,20 +916,42 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* 5. CALL TO ACTION BANNER */}
-      <section className="relative py-20 px-6 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border-t border-slate-900 text-center overflow-hidden">
-        <div className="gradient-move absolute top-0 left-1/3 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="gradient-move-delay absolute bottom-0 right-1/3 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <Reveal className="max-w-3xl mx-auto relative z-10">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Have a project in mind or want to collaborate?</h2>
-          <p className="text-slate-400 text-base md:text-lg mb-8">Let's build something exceptional together. Get in touch and let's discuss your next big idea.</p>
-          <Link
-            to="/Contact"
-            className="group relative inline-flex items-center gap-2 overflow-hidden px-10 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold tracking-wider rounded-xl shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:from-cyan-400 hover:to-blue-500 transition-all text-sm uppercase hover:-translate-y-0.5"
-          >
-            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-            <span className="relative">Get In Touch Now</span>
-          </Link>
+      {/* =========================================================================
+          7. CALL TO ACTION BANNER
+      ========================================================================= */}
+      <section className="relative py-24 px-6 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-t border-slate-900 text-center overflow-hidden">
+        <div className="gradient-move absolute top-0 left-1/3 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="gradient-move-delay absolute bottom-0 right-1/3 w-80 h-80 bg-teal-600/15 rounded-full blur-3xl pointer-events-none" />
+        
+        <Reveal className="max-w-3xl mx-auto relative z-10 space-y-6">
+          <span className="text-emerald-400 text-xs font-mono uppercase tracking-widest inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            Let's Collaborate
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight">
+            Have a project in mind or need a dedicated developer?
+          </h2>
+          <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto font-light">
+            I am available for freelance contracts, full-stack web applications, Next.js migrations, and full-time opportunities.
+          </p>
+          <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              to="/Contact"
+              className="pulse-ring group relative inline-flex items-center gap-2 overflow-hidden px-10 py-4 bg-gradient-to-r from-emerald-400 via-teal-300 to-green-500 text-slate-950 font-black tracking-wider rounded-xl shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/50 hover:scale-105 transition-all text-sm uppercase"
+            >
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              <span className="relative flex items-center gap-2">
+                Start A Conversation <ArrowRight size={16} />
+              </span>
+            </Link>
+            <a
+              href="https://wa.me/923484236919?text=Hi%20Ahmad,%20let's%20discuss%20a%20project!"
+              target="_blank"
+              rel="noreferrer"
+              className="px-8 py-4 bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-bold tracking-wider rounded-xl border border-slate-800 hover:border-emerald-500/40 transition-all text-sm uppercase flex items-center gap-2"
+            >
+              <MessageSquare size={16} className="text-emerald-400" /> WhatsApp Chat
+            </a>
+          </div>
         </Reveal>
       </section>
 

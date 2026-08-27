@@ -152,7 +152,7 @@ function Contact() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-cyan-500/35 overflow-x-hidden relative">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-emerald-500/35 selection:text-emerald-200 overflow-x-hidden relative">
       <style>{`
         @keyframes gradientMove {
           0%, 100% { transform: translate(0, 0) scale(1); }
@@ -176,7 +176,7 @@ function Contact() {
 
         .tilt-card:hover .tilt-glow {
           opacity: 1;
-          background: radial-gradient(180px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(34,211,238,0.12), transparent 70%);
+          background: radial-gradient(180px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(52,211,153,0.15), transparent 70%);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -187,16 +187,16 @@ function Contact() {
       `}</style>
 
       {/* Background Animated Elements */}
-      <div className="pan-grid pointer-events-none absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(to right, #22d3ee 1px, transparent 1px), linear-gradient(to bottom, #22d3ee 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
-      <div className="gradient-move absolute top-1/4 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="gradient-move-delay absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="pan-grid pointer-events-none absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(to right, #10b981 1px, transparent 1px), linear-gradient(to bottom, #10b981 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+      <div className="gradient-move absolute top-1/4 left-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="gradient-move-delay absolute bottom-1/3 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
       {/* Twinkling Particles */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {particles.map((p) => (
           <span
             key={p.id}
-            className="twinkle absolute rounded-full bg-cyan-300"
+            className="twinkle absolute rounded-full bg-emerald-300"
             style={{
               left: `${p.left}%`,
               top: `${p.top}%`,
@@ -217,10 +217,10 @@ function Contact() {
           {/* Left Block copywriting content */}
           <div className="md:col-span-5 space-y-6 text-center md:text-left">
             <Reveal>
-              <div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-widest mb-2 justify-center md:justify-start">
+              <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-2 justify-center md:justify-start">
                 <Terminal size={14} /> Get In Touch
               </div>
-              <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight inline-block relative pb-3 after:absolute after:bottom-0 after:left-1/2 md:after:left-0 after:transform after:-translate-x-1/2 md:after:translate-x-0 after:w-16 after:h-1.5 after:bg-gradient-to-r after:from-cyan-400 after:to-blue-500 after:rounded-full">
+              <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight inline-block relative pb-3 after:absolute after:bottom-0 after:left-1/2 md:after:left-0 after:transform after:-translate-x-1/2 md:after:translate-x-0 after:w-16 after:h-1.5 after:bg-gradient-to-r after:from-emerald-400 after:to-teal-400 after:rounded-full">
                 Let's Connect
               </h2>
             </Reveal>
@@ -233,11 +233,11 @@ function Contact() {
 
             <Reveal delay={200}>
               <div className="space-y-4 text-sm font-medium text-slate-300 pt-2 inline-block md:block text-left">
-                <p className="flex items-center gap-3 hover:text-cyan-400 transition-colors">
-                  <span className="text-base text-cyan-400"><Mail size={18} /></span> ahmaddev545@gmail.com
+                <p className="flex items-center gap-3 hover:text-emerald-400 transition-colors">
+                  <span className="text-base text-emerald-400"><Mail size={18} /></span> ahmaddev545@gmail.com
                 </p>
-                <p className="flex items-center gap-3 hover:text-cyan-400 transition-colors">
-                  <span className="text-base text-cyan-400"><MapPin size={18} /></span> Lahore, Pakistan
+                <p className="flex items-center gap-3 hover:text-emerald-400 transition-colors">
+                  <span className="text-base text-emerald-400"><MapPin size={18} /></span> Lahore, Pakistan
                 </p>
               </div>
             </Reveal>
@@ -246,7 +246,7 @@ function Contact() {
           {/* Right side interactive card layout form with TiltCard */}
           <div className="md:col-span-7">
             <Reveal delay={150} className="w-full">
-              <TiltCard className="bg-slate-900/70 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-slate-800 shadow-2xl">
+              <TiltCard className="bg-slate-900/70 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-slate-800 hover:border-emerald-500/40 shadow-2xl transition-colors">
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <label className="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-2">Name</label>
@@ -256,7 +256,7 @@ function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-600 text-sm focus:outline-none transition-colors"
+                      className="w-full bg-slate-950/80 border border-slate-800 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400/30 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-600 text-sm focus:outline-none transition-colors"
                       placeholder="John Doe"
                     />
                   </div>
@@ -268,7 +268,7 @@ function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-600 text-sm focus:outline-none transition-colors"
+                      className="w-full bg-slate-950/80 border border-slate-800 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400/30 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-600 text-sm focus:outline-none transition-colors"
                       placeholder="john@example.com"
                     />
                   </div>
@@ -280,13 +280,13 @@ function Contact() {
                       onChange={handleChange}
                       required
                       rows="4"
-                      className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-600 text-sm focus:outline-none transition-colors resize-none"
+                      className="w-full bg-slate-950/80 border border-slate-800 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400/30 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-600 text-sm focus:outline-none transition-colors resize-none"
                       placeholder="Tell me about your project..."
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 font-bold tracking-wider uppercase text-xs text-slate-950 rounded-xl shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:from-cyan-400 hover:to-blue-500 transform hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-gradient-to-r from-emerald-400 via-teal-300 to-green-500 font-bold tracking-wider uppercase text-xs text-slate-950 rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:from-emerald-300 hover:to-green-400 transform hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
                   >
                     <span>Send Message</span> <Send size={14} />
                   </button>

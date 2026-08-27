@@ -80,7 +80,7 @@ export default function CustomCursor() {
       {/* Small Sharp Dot (Exact Mouse Position) */}
       <div
         ref={dotRef}
-        className={`absolute top-0 left-0 w-3 h-3 bg-cyan-400 rounded-full -ml-1.5 -mt-1.5 transition-transform duration-75 ${
+        className={`absolute top-0 left-0 w-3 h-3 bg-emerald-400 rounded-full -ml-1.5 -mt-1.5 transition-transform duration-75 shadow-[0_0_10px_rgba(52,211,153,0.8)] ${
           isClicking ? 'scale-50' : 'scale-100'
         }`}
       />
@@ -88,9 +88,9 @@ export default function CustomCursor() {
       {/* Smooth Following Ring with Hover Expansion */}
       <div
         ref={ringRef}
-        className={`absolute top-0 left-0 rounded-full border border-cyan-400/80 -ml-5 -mt-5 transition-all duration-100 ${
+        className={`absolute top-0 left-0 rounded-full border border-emerald-400/80 -ml-5 -mt-5 transition-all duration-100 ${
           isHovered
-            ? 'w-14 h-14 -ml-7 -mt-7 bg-cyan-500/20 border-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.5)]'
+            ? 'w-14 h-14 -ml-7 -mt-7 bg-emerald-500/20 border-emerald-300 shadow-[0_0_20px_rgba(52,211,153,0.6)]'
             : 'w-10 h-10'
         } ${isClicking ? 'scale-75' : 'scale-100'}`}
       />

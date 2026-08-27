@@ -96,7 +96,7 @@ export default function Resume() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-cyan-500/35 overflow-x-hidden relative">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-emerald-500/35 selection:text-emerald-200 overflow-x-hidden relative">
       <style>{`
         @keyframes gradientMove {
           0%, 100% { transform: translate(0, 0) scale(1); }
@@ -120,7 +120,7 @@ export default function Resume() {
 
         .tilt-card:hover .tilt-glow {
           opacity: 1;
-          background: radial-gradient(180px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(34,211,238,0.12), transparent 70%);
+          background: radial-gradient(180px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(52,211,153,0.15), transparent 70%);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -131,16 +131,16 @@ export default function Resume() {
       `}</style>
 
       {/* Background Animated Elements */}
-      <div className="pan-grid pointer-events-none absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(to right, #22d3ee 1px, transparent 1px), linear-gradient(to bottom, #22d3ee 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
-      <div className="gradient-move absolute top-1/4 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="gradient-move-delay absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="pan-grid pointer-events-none absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(to right, #10b981 1px, transparent 1px), linear-gradient(to bottom, #10b981 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+      <div className="gradient-move absolute top-1/4 left-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="gradient-move-delay absolute bottom-1/3 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
       {/* Twinkling Particles */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {particles.map((p) => (
           <span
             key={p.id}
-            className="twinkle absolute rounded-full bg-cyan-300"
+            className="twinkle absolute rounded-full bg-emerald-300"
             style={{
               left: `${p.left}%`,
               top: `${p.top}%`,
@@ -160,14 +160,14 @@ export default function Resume() {
         {/* Header Options */}
         <Reveal className="flex justify-between items-center mb-10 border-b border-slate-800/80 pb-5">
           <div>
-            <div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-widest mb-1">
+            <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-1">
               <Terminal size={14} /> Official Document
             </div>
             <h1 className="text-3xl font-black text-white">Curriculum Vitae</h1>
           </div>
           <button 
             onClick={() => window.print()} 
-            className="flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-cyan-500/40 rounded-xl text-xs font-bold text-cyan-400 uppercase tracking-widest transition-all shadow-md group"
+            className="flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/40 rounded-xl text-xs font-bold text-emerald-400 uppercase tracking-widest transition-all shadow-md group"
           >
             <span>Print / Download PDF</span>
             <Download size={14} className="transform group-hover:translate-y-0.5 transition-transform" />
@@ -176,24 +176,24 @@ export default function Resume() {
 
         {/* Resume Sheet */}
         <Reveal delay={100}>
-          <TiltCard className="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl p-6 md:p-10 shadow-2xl space-y-8">
+          <TiltCard className="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 hover:border-emerald-500/30 rounded-2xl p-6 md:p-10 shadow-2xl space-y-8 transition-colors">
             
             {/* Top Identity Block */}
             <div className="text-center sm:text-left flex flex-col sm:flex-row justify-between items-start gap-4 pb-6 border-b border-slate-800/60">
               <div>
                 <h2 className="text-3xl font-black text-white">MUHAMMAD AHMAD</h2>
-                <p className="text-cyan-400 font-semibold tracking-wide text-sm mt-1">Full Stack Developer</p>
+                <p className="text-emerald-400 font-semibold tracking-wide text-sm mt-1">Full Stack Developer</p>
               </div>
               <div className="text-sm text-slate-400 space-y-1 text-center sm:text-right w-full sm:w-auto font-mono text-xs">
                 <p>📧 ahmaddev545@gmail.com | 📱 +92 348 4236919</p>
                 <p>📍 Lahore, Pakistan</p>
-                <p className="text-cyan-400/80">github.com/ahmad-545 | linkedin.com/in/muhammad-ahmad-9b031530a</p>
+                <p className="text-emerald-400/80">github.com/ahmad-545 | linkedin.com/in/muhammad-ahmad-9b031530a</p>
               </div>
             </div>
 
             {/* Summary */}
             <div className="space-y-2">
-              <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400">Professional Summary</h3>
+              <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">Professional Summary</h3>
               <p className="text-slate-300 text-sm leading-relaxed font-light">
                 Full Stack Developer skilled in building responsive, user-friendly, and scalable web applications using the MERN stack[cite: 1]. Experienced in developing RESTful APIs, secure authentication systems, database-driven applications, and modern React interfaces[cite: 1]. Skilled in AI integration and building real-world applications with a strong focus on clean code, performance, and problem-solving[cite: 1].
               </p>
@@ -201,17 +201,17 @@ export default function Resume() {
 
             {/* Technical Skills */}
             <div className="space-y-3">
-              <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400">Technical Skill Matrix</h3>
+              <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">Technical Skill Matrix</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm bg-slate-950/60 p-5 rounded-xl border border-slate-900">
-                <p><strong className="text-white font-mono text-xs text-cyan-300">Tech Stack:</strong> MongoDB, Express.js, React.js, Node.js (MERN)[cite: 1]</p>
-                <p><strong className="text-white font-mono text-xs text-cyan-300">Languages:</strong> JavaScript, Python[cite: 1]</p>
-                <p className="sm:col-span-2"><strong className="text-white font-mono text-xs text-cyan-300">Tools & AI Integration:</strong> GitHub, Version Control, REST APIs, JWT Authentication, Postman, Responsive UI Design[cite: 1]</p>
+                <p><strong className="text-white font-mono text-xs text-emerald-300">Tech Stack:</strong> MongoDB, Express.js, React.js, Node.js (MERN)[cite: 1]</p>
+                <p><strong className="text-white font-mono text-xs text-emerald-300">Languages:</strong> JavaScript, Python[cite: 1]</p>
+                <p className="sm:col-span-2"><strong className="text-white font-mono text-xs text-emerald-300">Tools & AI Integration:</strong> GitHub, Version Control, REST APIs, JWT Authentication, Postman, Responsive UI Design[cite: 1]</p>
               </div>
             </div>
 
             {/* Projects */}
             <div className="space-y-6">
-              <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400">Key Engineering Projects</h3>
+              <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">Key Engineering Projects</h3>
               
               {/* Project 1 */}
               <div className="space-y-2">
@@ -219,9 +219,9 @@ export default function Resume() {
                   <h4 className="text-lg font-bold text-white flex items-center gap-2">
                     Virtual Try-On Clothing Web Application <span className="text-slate-500 text-xs font-normal font-mono">(Final Year Project)</span>
                   </h4>
-                  <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2.5 py-0.5 rounded-full">2026[cite: 1]</span>
+                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">2026[cite: 1]</span>
                 </div>
-                <p className="text-xs text-cyan-400 font-mono flex items-center gap-1">
+                <p className="text-xs text-emerald-400 font-mono flex items-center gap-1">
                   <ExternalLink size={12} /> Live: trylo.store[cite: 1]
                 </p>
                 <ul className="list-disc pl-5 text-sm text-slate-400 space-y-1.5 font-light">
@@ -236,9 +236,9 @@ export default function Resume() {
               <div className="space-y-2 pt-2 border-t border-slate-800/40">
                 <div className="flex justify-between items-baseline flex-wrap gap-2">
                   <h4 className="text-lg font-bold text-white">AI-Powered Personal Expense & Subscription Tracker</h4>
-                  <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2.5 py-0.5 rounded-full">2026[cite: 1]</span>
+                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">2026[cite: 1]</span>
                 </div>
-                <p className="text-xs text-cyan-400 font-mono flex items-center gap-1">
+                <p className="text-xs text-emerald-400 font-mono flex items-center gap-1">
                   <ExternalLink size={12} /> Live: Expense AI[cite: 1]
                 </p>
                 <ul className="list-disc pl-5 text-sm text-slate-400 space-y-1.5 font-light">
@@ -253,9 +253,9 @@ export default function Resume() {
               <div className="space-y-2 pt-2 border-t border-slate-800/40">
                 <div className="flex justify-between items-baseline flex-wrap gap-2">
                   <h4 className="text-lg font-bold text-white">Personal Portfolio Website</h4>
-                  <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2.5 py-0.5 rounded-full">2025[cite: 1]</span>
+                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">2025[cite: 1]</span>
                 </div>
-                <p className="text-xs text-cyan-400 font-mono flex items-center gap-1">
+                <p className="text-xs text-emerald-400 font-mono flex items-center gap-1">
                   <ExternalLink size={12} /> Live: Portfolio[cite: 1]
                 </p>
                 <ul className="list-disc pl-5 text-sm text-slate-400 space-y-1.5 font-light">
@@ -268,13 +268,13 @@ export default function Resume() {
 
             {/* Education */}
             <div className="space-y-3 pt-2 border-t border-slate-800/40">
-              <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400">Education</h3>
+              <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">Education</h3>
               <div className="space-y-1 bg-slate-950/40 p-4 rounded-xl border border-slate-900">
                 <div className="flex justify-between items-baseline flex-wrap gap-2">
                   <h4 className="text-base font-bold text-white">BS in Computer Science[cite: 1]</h4>
                   <span className="text-xs font-mono font-bold text-slate-400">2022 - 2026[cite: 1]</span>
                 </div>
-                <p className="text-sm text-cyan-300 font-medium">Minhaj University Lahore[cite: 1]</p>
+                <p className="text-sm text-emerald-300 font-medium">Minhaj University Lahore[cite: 1]</p>
                 <p className="text-xs text-slate-400 font-light pt-1">
                   Graduated with a strong foundation in Object-Oriented Programming (OOP), Data Structures & Algorithms (DSA), and Programming Fundamentals[cite: 1].
                 </p>
@@ -283,7 +283,7 @@ export default function Resume() {
 
             {/* Languages */}
             <div className="space-y-2 pt-2 border-t border-slate-800/40">
-              <p className="text-xs text-slate-400"><strong className="text-cyan-400 uppercase tracking-wider text-[10px] font-mono font-bold mr-2">Languages:</strong> English, Urdu</p>
+              <p className="text-xs text-slate-400"><strong className="text-emerald-400 uppercase tracking-wider text-[10px] font-mono font-bold mr-2">Languages:</strong> English, Urdu</p>
             </div>
 
           </TiltCard>

@@ -100,7 +100,7 @@ export default function Work() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-cyan-500/35 overflow-x-hidden relative">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-emerald-500/35 selection:text-emerald-200 overflow-x-hidden relative">
       <style>{`
         @keyframes gradientMove {
           0%, 100% { transform: translate(0, 0) scale(1); }
@@ -124,7 +124,7 @@ export default function Work() {
 
         .tilt-card:hover .tilt-glow {
           opacity: 1;
-          background: radial-gradient(180px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(34,211,238,0.12), transparent 70%);
+          background: radial-gradient(180px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(52,211,153,0.15), transparent 70%);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -135,16 +135,16 @@ export default function Work() {
       `}</style>
 
       {/* Background Animated Elements */}
-      <div className="pan-grid pointer-events-none absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(to right, #22d3ee 1px, transparent 1px), linear-gradient(to bottom, #22d3ee 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
-      <div className="gradient-move absolute top-1/4 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="gradient-move-delay absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="pan-grid pointer-events-none absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(to right, #10b981 1px, transparent 1px), linear-gradient(to bottom, #10b981 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+      <div className="gradient-move absolute top-1/4 left-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="gradient-move-delay absolute bottom-1/3 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
       {/* Twinkling Particles */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {particles.map((p) => (
           <span
             key={p.id}
-            className="twinkle absolute rounded-full bg-cyan-300"
+            className="twinkle absolute rounded-full bg-emerald-300"
             style={{
               left: `${p.left}%`,
               top: `${p.top}%`,
@@ -163,11 +163,11 @@ export default function Work() {
         
         {/* Section Header - Properly spaced and isolated */}
         <div className="w-full mb-14 text-center lg:text-left pt-4">
-          <div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-3">
             <Terminal size={14} /> Portfolio Showcase
           </div>
           <div>
-            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight relative inline-block pb-3 after:absolute after:bottom-0 after:left-1/2 lg:after:left-0 after:transform after:-translate-x-1/2 lg:after:translate-x-0 after:w-20 after:h-1.5 after:bg-gradient-to-r after:from-cyan-400 after:to-blue-500 after:rounded-full">
+            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight relative inline-block pb-3 after:absolute after:bottom-0 after:left-1/2 lg:after:left-0 after:transform after:-translate-x-1/2 lg:after:translate-x-0 after:w-20 after:h-1.5 after:bg-gradient-to-r after:from-emerald-400 after:to-teal-400 after:rounded-full">
               My Latest Work
             </h1>
           </div>
@@ -177,13 +177,13 @@ export default function Work() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {mywork_data.slice(0, visibleCount).map((value, i) => (
             <Reveal key={i} delay={i * 80}>
-              <TiltCard className="h-full overflow-hidden rounded-2xl bg-slate-900/70 border border-slate-800 flex flex-col justify-between group shadow-xl">
+              <TiltCard className="h-full overflow-hidden rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-emerald-500/40 flex flex-col justify-between group shadow-xl transition-colors">
                 <div className="relative overflow-hidden aspect-video">
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-0 group-hover:opacity-95 transition-opacity duration-300 z-10 flex flex-col justify-end p-6">
                     <h3 className="text-lg font-bold text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                       Project {i + 1}
                     </h3>
-                    <p className="text-cyan-400 text-xs font-semibold tracking-wider uppercase mt-1 flex items-center gap-1">
+                    <p className="text-emerald-400 text-xs font-semibold tracking-wider uppercase mt-1 flex items-center gap-1">
                       <Code size={12} /> MERN / Full Stack App
                     </p>
                   </div>
@@ -196,7 +196,7 @@ export default function Work() {
                 
                 <div className="p-5 border-t border-slate-800/80 flex items-center justify-between bg-slate-950/40">
                   <span className="text-xs text-slate-400 font-mono">Production Ready</span>
-                  <span className="text-cyan-400 text-xs font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <span className="text-emerald-400 text-xs font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                     Explore <ExternalLink size={14} />
                   </span>
                 </div>
@@ -210,7 +210,7 @@ export default function Work() {
           <Reveal className="flex justify-center">
             <button 
               onClick={() => setVisibleCount((prev) => prev + 3)}
-              className="flex items-center gap-3 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-white font-medium tracking-wide text-sm px-8 py-4 rounded-xl transition-all shadow-lg group shadow-cyan-500/5 hover:-translate-y-0.5"
+              className="flex items-center gap-3 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/40 text-slate-200 hover:text-white font-medium tracking-wide text-sm px-8 py-4 rounded-xl transition-all shadow-lg group shadow-emerald-500/5 hover:-translate-y-0.5"
             >
               <span>Show More Projects</span>
               <img 
