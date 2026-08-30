@@ -211,43 +211,50 @@ function Contact() {
 
       <Navbar />
 
-      <section id="contact" className="flex-grow flex items-center py-16 px-6 md:px-12 max-w-5xl mx-auto w-full relative z-20">
-        <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      <section id="contact" className="flex-grow flex items-center py-12 md:py-16 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto w-full relative z-20">
+        <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
           
           {/* Left Block copywriting content */}
-          <div className="md:col-span-5 space-y-6 text-center md:text-left">
-            <Reveal>
-              <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-2 justify-center md:justify-start">
-                <Terminal size={14} /> Get In Touch
+          <div className="md:col-span-5 space-y-6 text-center md:text-left flex flex-col items-center md:items-start">
+            <Reveal className="w-full">
+              <div className="flex flex-col items-center md:items-start mb-2">
+                <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-3">
+                  <Terminal size={14} /> Get In Touch
+                </div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight relative pb-3.5 after:absolute after:bottom-0 after:left-1/2 md:after:left-0 after:transform after:-translate-x-1/2 md:after:translate-x-0 after:w-16 after:h-1.5 after:bg-gradient-to-r after:from-emerald-400 after:to-teal-400 after:rounded-full">
+                  Let's Connect
+                </h1>
               </div>
-              <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight inline-block relative pb-3 after:absolute after:bottom-0 after:left-1/2 md:after:left-0 after:transform after:-translate-x-1/2 md:after:translate-x-0 after:w-16 after:h-1.5 after:bg-gradient-to-r after:from-emerald-400 after:to-teal-400 after:rounded-full">
-                Let's Connect
-              </h2>
             </Reveal>
 
-            <Reveal delay={100}>
-              <p className="text-slate-400 text-base md:text-lg font-light leading-relaxed pt-2">
+            <Reveal delay={100} className="w-full">
+              <p className="text-slate-400 text-sm sm:text-base md:text-lg font-light leading-relaxed">
                 Got an adaptive web workspace blueprints layout, an enterprise web application architecture, or a modern user experience interface to build? Drop a direct note here.
               </p>
             </Reveal>
 
-            <Reveal delay={200}>
-              <div className="space-y-4 text-sm font-medium text-slate-300 pt-2 inline-block md:block text-left">
+            <Reveal delay={200} className="w-full">
+              <div className="space-y-4 text-xs sm:text-sm font-medium text-slate-300 pt-2 flex flex-col items-center md:items-start">
+                <a 
+                  href="mailto:ahmaddev545@gmail.com" 
+                  className="flex items-center gap-3 hover:text-emerald-400 transition-colors break-all group"
+                >
+                  <span className="text-emerald-400 shrink-0 group-hover:scale-110 transition-transform"><Mail size={18} /></span> 
+                  <span>ahmaddev545@gmail.com</span>
+                </a>
                 <p className="flex items-center gap-3 hover:text-emerald-400 transition-colors">
-                  <span className="text-base text-emerald-400"><Mail size={18} /></span> ahmaddev545@gmail.com
-                </p>
-                <p className="flex items-center gap-3 hover:text-emerald-400 transition-colors">
-                  <span className="text-base text-emerald-400"><MapPin size={18} /></span> Lahore, Pakistan
+                  <span className="text-emerald-400 shrink-0"><MapPin size={18} /></span> 
+                  <span>Lahore, Pakistan</span>
                 </p>
               </div>
             </Reveal>
           </div>
 
           {/* Right side interactive card layout form with TiltCard */}
-          <div className="md:col-span-7">
+          <div className="md:col-span-7 w-full">
             <Reveal delay={150} className="w-full">
-              <TiltCard className="bg-slate-900/70 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-slate-800 hover:border-emerald-500/40 shadow-2xl transition-colors">
-                <form onSubmit={handleSubmit} className="space-y-5">
+              <TiltCard className="bg-slate-900/70 backdrop-blur-md p-5 sm:p-7 md:p-8 rounded-2xl border border-slate-800 hover:border-emerald-500/40 shadow-2xl transition-colors">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                   <div>
                     <label className="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-2">Name</label>
                     <input
@@ -286,7 +293,7 @@ function Contact() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-4 bg-gradient-to-r from-emerald-400 via-teal-300 to-green-500 font-bold tracking-wider uppercase text-xs text-slate-950 rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:from-emerald-300 hover:to-green-400 transform hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
+                    className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-emerald-400 via-teal-300 to-green-500 font-bold tracking-wider uppercase text-xs text-slate-950 rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:from-emerald-300 hover:to-green-400 transform hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
                   >
                     <span>Send Message</span> <Send size={14} />
                   </button>

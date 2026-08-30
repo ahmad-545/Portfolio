@@ -409,7 +409,7 @@ export default function Hero() {
       <section
         ref={heroRef}
         onMouseMove={handleHeroMove}
-        className="min-h-[96vh] flex items-center justify-center relative overflow-hidden pt-28 pb-16 md:pt-32 md:pb-24 px-6 md:px-12"
+        className="min-h-[96vh] flex items-center justify-center relative overflow-hidden pt-28 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 md:px-12"
       >
         {/* Dynamic Mouse Tracking Spotlight */}
         <div
@@ -489,22 +489,22 @@ export default function Hero() {
           <div className="lg:col-span-7 text-center lg:text-left space-y-6">
             
             {/* Live Status Pill with Radar Pulse */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/80 border border-emerald-500/30 text-xs font-mono text-emerald-300 shadow-[0_0_20px_rgba(52,211,153,0.15)] backdrop-blur-md">
-              <span className="relative flex h-2.5 w-2.5">
+            <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-slate-900/80 border border-emerald-500/30 text-[11px] sm:text-xs font-mono text-emerald-300 shadow-[0_0_20px_rgba(52,211,153,0.15)] backdrop-blur-md max-w-full">
+              <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-emerald-500"></span>
               </span>
-              <span className="text-slate-400 font-semibold">AVAILABLE FOR NEW PROJECTS</span>
+              <span className="text-slate-400 font-semibold truncate">AVAILABLE FOR NEW PROJECTS</span>
               <span className="hidden sm:inline text-slate-600">|</span>
               <span className="hidden sm:inline text-emerald-400 font-bold">FULL-STACK & NEXT.JS</span>
             </div>
 
             {/* Main Greeting & Name Headline */}
             <div>
-              <p className="text-sm md:text-base font-mono text-emerald-400 uppercase tracking-widest mb-2 flex items-center justify-center lg:justify-start gap-2">
+              <p className="text-xs sm:text-sm md:text-base font-mono text-emerald-400 uppercase tracking-widest mb-2 flex items-center justify-center lg:justify-start gap-2">
                 <Terminal size={16} /> Hello, World! I am
               </p>
-              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black tracking-tight leading-none text-white">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-black tracking-tight leading-none text-white break-words">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300">
                   Muhammad
                 </span>{' '}
@@ -523,7 +523,7 @@ export default function Hero() {
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
                   <span className="ml-2 text-slate-400">~/ahmad/developer.ts</span>
                 </div>
-                <p className="text-base sm:text-xl md:text-2xl font-bold font-mono text-slate-200 tracking-tight flex items-center justify-center lg:justify-start min-h-[2rem]">
+                <p className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold font-mono text-slate-200 tracking-tight flex items-center justify-center lg:justify-start min-h-[2.5rem] flex-wrap">
                   <span className="text-emerald-400 mr-2 font-black">&gt;</span>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-green-400">
                     {role}
@@ -534,20 +534,20 @@ export default function Hero() {
             </div>
 
             {/* Elevator Pitch Subtitle */}
-            <p className="text-slate-300 text-base sm:text-lg font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
+            <p className="text-slate-300 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
               Transforming innovative ideas into scale-ready web platforms. Specializing in <span className="text-emerald-400 font-semibold">Next.js & React</span> frontend engineering, resilient <span className="text-teal-300 font-semibold">Node.js / Express</span> backend APIs, and smart <span className="text-green-400 font-semibold">AI integrations</span>.
             </p>
 
             {/* Quick Action Buttons (CTAs) */}
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-center lg:justify-start pt-2">
               {/* Primary Glowing Button */}
               <Link
                 to="/Contact"
-                className="pulse-ring group relative w-full sm:w-auto overflow-hidden px-8 py-4 bg-gradient-to-r from-emerald-400 via-teal-300 to-green-500 text-slate-950 font-black tracking-wider rounded-xl shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/50 hover:scale-105 active:scale-95 transition-all duration-300 text-center text-sm uppercase flex items-center justify-center gap-2"
+                className="pulse-ring group relative w-full sm:w-auto overflow-hidden px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-emerald-400 via-teal-300 to-green-500 text-slate-950 font-black tracking-wider rounded-xl shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/50 hover:scale-105 active:scale-95 transition-all duration-300 text-center text-xs sm:text-sm uppercase flex items-center justify-center gap-2"
               >
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
                 <span className="relative flex items-center justify-center gap-2">
-                  <Zap size={18} className="fill-current text-slate-950" />
+                  <Zap size={16} className="fill-current text-slate-950 sm:w-[18px] sm:h-[18px]" />
                   Let's Talk Projects
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </span>
@@ -556,7 +556,7 @@ export default function Hero() {
               {/* Secondary Projects Button */}
               <Link
                 to="/work"
-                className="group w-full sm:w-auto px-7 py-4 bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white font-bold tracking-wider rounded-xl border border-slate-700 hover:border-emerald-400/50 shadow-lg hover:shadow-emerald-500/15 hover:scale-105 active:scale-95 transition-all duration-300 text-center text-sm uppercase flex items-center justify-center gap-2"
+                className="group w-full sm:w-auto px-6 sm:px-7 py-3.5 sm:py-4 bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white font-bold tracking-wider rounded-xl border border-slate-700 hover:border-emerald-400/50 shadow-lg hover:shadow-emerald-500/15 hover:scale-105 active:scale-95 transition-all duration-300 text-center text-xs sm:text-sm uppercase flex items-center justify-center gap-2"
               >
                 <Briefcase size={16} className="text-emerald-400 group-hover:rotate-12 transition-transform" />
                 Explore Work
@@ -565,19 +565,19 @@ export default function Hero() {
               {/* Resume Button */}
               <Link
                 to="/resume"
-                className="group w-full sm:w-auto px-6 py-4 bg-slate-950/80 hover:bg-slate-900 text-slate-300 hover:text-emerald-300 font-semibold tracking-wider rounded-xl border border-slate-800 hover:border-emerald-500/30 transition-all text-center text-sm uppercase flex items-center justify-center gap-2"
+                className="group w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 bg-slate-950/80 hover:bg-slate-900 text-slate-300 hover:text-emerald-300 font-semibold tracking-wider rounded-xl border border-slate-800 hover:border-emerald-500/30 transition-all text-center text-xs sm:text-sm uppercase flex items-center justify-center gap-2"
               >
                 <Terminal size={16} className="text-emerald-400" /> Resume
               </Link>
             </div>
 
             {/* Quick Social / Connect Badges */}
-            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-mono text-slate-400">
+            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-4 text-xs font-mono text-slate-400">
               <a
                 href="https://github.com/ahmad-545"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 hover:text-emerald-300 transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 hover:text-emerald-300 transition-all text-[11px] sm:text-xs"
               >
                 <GithubIcon className="w-3.5 h-3.5 text-emerald-400" />
                 github.com/ahmad-545
@@ -586,7 +586,7 @@ export default function Hero() {
                 href="https://wa.me/923484236919?text=Hi%20Ahmad,%20I%20saw%20your%20portfolio!"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 hover:text-emerald-300 transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 hover:text-emerald-300 transition-all text-[11px] sm:text-xs"
               >
                 <MessageSquare size={14} className="text-emerald-400" />
                 WhatsApp Direct
@@ -596,17 +596,17 @@ export default function Hero() {
           </div>
 
           {/* ================= RIGHT COLUMN: FUTURISTIC 3D DEVELOPER SHOWCASE ================= */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
+          <div className="lg:col-span-5 flex flex-col items-center justify-center relative w-full">
             
             {/* Interactive Outer Visual Container with Float Physics */}
-            <div className="relative group float-gentle w-full max-w-sm sm:max-w-md mx-auto">
+            <div className="relative group float-gentle w-full max-w-xs sm:max-w-md mx-auto">
               
               {/* Rotating Holographic Conic Glow Ring */}
-              <div className="spin-slow absolute -inset-4 rounded-[2.5rem] bg-[conic-gradient(from_0deg,#10b981,#34d399,#059669,#10b981)] opacity-50 blur-xl group-hover:opacity-75 transition duration-700 pointer-events-none" />
+              <div className="spin-slow absolute -inset-3 sm:-inset-4 rounded-[2.5rem] bg-[conic-gradient(from_0deg,#10b981,#34d399,#059669,#10b981)] opacity-50 blur-xl group-hover:opacity-75 transition duration-700 pointer-events-none" />
               <div className="spin-slow-reverse absolute -inset-2 rounded-[2.5rem] bg-[conic-gradient(from_180deg,#34d399,#6ee7b7,#059669,#34d399)] opacity-30 blur-md pointer-events-none" />
 
               {/* Main Card Frame */}
-              <div className="relative bg-slate-900/90 border border-slate-700/80 rounded-3xl p-3.5 shadow-2xl overflow-hidden backdrop-blur-xl">
+              <div className="relative bg-slate-900/90 border border-slate-700/80 rounded-3xl p-3 sm:p-3.5 shadow-2xl overflow-hidden backdrop-blur-xl">
                 
                 {/* Developer Avatar with Holographic Overlay */}
                 <div className="relative rounded-2xl overflow-hidden bg-slate-950 aspect-square sm:aspect-[4/4.5] flex items-center justify-center">
@@ -628,12 +628,12 @@ export default function Hero() {
                   <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-emerald-400 pointer-events-none"></div>
 
                   {/* Bottom Avatar Status Card */}
-                  <div className="absolute bottom-3 inset-x-3 p-2.5 rounded-xl bg-slate-950/85 border border-slate-800/90 backdrop-blur-md flex items-center justify-between shadow-lg">
-                    <div className="flex items-center gap-2">
+                  <div className="absolute bottom-3 inset-x-3 p-2 sm:p-2.5 rounded-xl bg-slate-950/85 border border-slate-800/90 backdrop-blur-md flex items-center justify-between shadow-lg">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
                       <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-                      <span className="text-xs font-mono font-bold text-slate-200">Muhammad Ahmad</span>
+                      <span className="text-[11px] sm:text-xs font-mono font-bold text-slate-200">Muhammad Ahmad</span>
                     </div>
-                    <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    <span className="text-[9px] sm:text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                       MERN & NEXT.JS
                     </span>
                   </div>
@@ -641,18 +641,18 @@ export default function Hero() {
 
                 {/* Floating Orbit Tech Badges */}
                 {/* Top-Left: Next.js & React */}
-                <div className="float-badge-1 absolute -top-4 -left-4 z-20 px-3 py-1.5 rounded-xl cyber-glass border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold shadow-xl shadow-emerald-500/10 flex items-center gap-1.5 hover:scale-110 transition-transform">
-                  <span className="text-sm">▲</span> Next.js & React 18
+                <div className="float-badge-1 absolute -top-3 -left-2 sm:-top-4 sm:-left-4 z-20 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl cyber-glass border border-emerald-500/40 text-emerald-300 text-[10px] sm:text-xs font-mono font-bold shadow-xl shadow-emerald-500/10 flex items-center gap-1.5 hover:scale-110 transition-transform">
+                  <span className="text-xs sm:text-sm">▲</span> Next.js & React 18
                 </div>
 
                 {/* Top-Right: Full Stack */}
-                <div className="float-badge-2 absolute -top-3 -right-3 z-20 px-3 py-1.5 rounded-xl cyber-glass border border-teal-500/40 text-teal-300 text-xs font-mono font-bold shadow-xl shadow-teal-500/10 flex items-center gap-1.5 hover:scale-110 transition-transform">
-                  <Cpu size={14} className="text-teal-400" /> Full Stack MERN
+                <div className="float-badge-2 absolute -top-3 -right-2 sm:-top-3 sm:-right-3 z-20 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl cyber-glass border border-teal-500/40 text-teal-300 text-[10px] sm:text-xs font-mono font-bold shadow-xl shadow-teal-500/10 flex items-center gap-1.5 hover:scale-110 transition-transform">
+                  <Cpu size={13} className="text-teal-400 sm:w-3.5 sm:h-3.5" /> Full Stack MERN
                 </div>
 
                 {/* Bottom-Right: AI Integrations */}
-                <div className="float-badge-3 absolute -bottom-3 -right-3 z-20 px-3 py-1.5 rounded-xl cyber-glass border border-green-500/40 text-green-300 text-xs font-mono font-bold shadow-xl shadow-green-500/10 flex items-center gap-1.5 hover:scale-110 transition-transform">
-                  <Sparkles size={14} className="text-green-400" /> AI & Smart APIs
+                <div className="float-badge-3 absolute -bottom-3 -right-2 sm:-bottom-3 sm:-right-3 z-20 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl cyber-glass border border-green-500/40 text-green-300 text-[10px] sm:text-xs font-mono font-bold shadow-xl shadow-green-500/10 flex items-center gap-1.5 hover:scale-110 transition-transform">
+                  <Sparkles size={13} className="text-green-400 sm:w-3.5 sm:h-3.5" /> AI & Smart APIs
                 </div>
               </div>
 
@@ -713,14 +713,14 @@ export default function Hero() {
           2. TECH STACK INFINITE MARQUEE WITH GLOW BADGES
       ========================================================================= */}
       <section className="relative py-7 border-y border-slate-900 bg-slate-950/90 overflow-hidden backdrop-blur-md">
-        <div className="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-20 sm:w-28 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-20 sm:w-28 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
         
         <div className="flex w-max animate-marquee">
           {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
             <div
               key={i}
-              className="flex items-center gap-2.5 mx-3 px-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800/80 hover:border-emerald-500/40 text-slate-300 hover:text-white text-xs font-mono whitespace-nowrap shadow-sm hover:shadow-emerald-500/10 transition-all duration-300 group cursor-default"
+              className="flex items-center gap-2 sm:gap-2.5 mx-2 sm:mx-3 px-3 sm:px-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800/80 hover:border-emerald-500/40 text-slate-300 hover:text-white text-xs font-mono whitespace-nowrap shadow-sm hover:shadow-emerald-500/10 transition-all duration-300 group cursor-default"
             >
               <span className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-400 to-green-500 group-hover:scale-125 transition-transform" />
               <span className="font-semibold">{tech.name}</span>
@@ -735,8 +735,8 @@ export default function Hero() {
       {/* =========================================================================
           3. STATS & KEY IMPACT HIGHLIGHTS
       ========================================================================= */}
-      <section ref={statsRef} className="py-14 border-b border-slate-900 bg-slate-900/30">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+      <section ref={statsRef} className="py-12 md:py-14 border-b border-slate-900 bg-slate-900/30 px-4 sm:px-6 md:px-12">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 text-center">
           {[
             { value: `${yearsExp}+`, label: 'Years Experience', sub: 'Industry Standard', color: 'from-emerald-400 to-teal-300', Icon: Award },
             { value: `${projectsCount}+`, label: 'Projects Completed', sub: 'MERN & Full-Stack', color: 'from-teal-300 to-green-400', Icon: Code },
@@ -746,16 +746,16 @@ export default function Hero() {
             <div
               key={stat.label}
               style={{ transitionDelay: `${i * 120}ms` }}
-              className={`p-6 rounded-2xl bg-slate-900/40 border border-slate-800/70 hover:border-emerald-500/30 transition-all duration-700 ease-out hover:-translate-y-1 shadow-lg ${
+              className={`p-4 sm:p-6 rounded-2xl bg-slate-900/40 border border-slate-800/70 hover:border-emerald-500/30 transition-all duration-700 ease-out hover:-translate-y-1 shadow-lg ${
                 statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              <stat.Icon size={20} className="mx-auto mb-3 text-emerald-400 opacity-80" />
-              <h3 className={`text-4xl sm:text-5xl font-black mb-1.5 text-transparent bg-clip-text bg-gradient-to-r ${stat.color}`}>
+              <stat.Icon size={18} className="mx-auto mb-2.5 sm:mb-3 text-emerald-400 opacity-80 sm:w-5 sm:h-5" />
+              <h3 className={`text-3xl sm:text-4xl lg:text-5xl font-black mb-1 sm:mb-1.5 text-transparent bg-clip-text bg-gradient-to-r ${stat.color}`}>
                 {stat.value}
               </h3>
-              <p className="text-slate-200 text-xs sm:text-sm font-bold tracking-wide uppercase font-mono">{stat.label}</p>
-              <p className="text-slate-500 text-[11px] mt-1 font-sans">{stat.sub}</p>
+              <p className="text-slate-200 text-[11px] sm:text-xs md:text-sm font-bold tracking-wide uppercase font-mono">{stat.label}</p>
+              <p className="text-slate-500 text-[10px] sm:text-[11px] mt-1 font-sans">{stat.sub}</p>
             </div>
           ))}
         </div>
@@ -764,26 +764,26 @@ export default function Hero() {
       {/* =========================================================================
           4. ABOUT ME HIGHLIGHT / PHILOSOPHY
       ========================================================================= */}
-      <section className="relative py-24 px-6 md:px-12 bg-slate-950 overflow-hidden">
+      <section className="relative py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-slate-950 overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <Reveal>
             <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-3">
               <Terminal size={14} /> Background & Philosophy
             </div>
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-white">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight mb-4 text-white">
               Engineering with Scalability & Purpose
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-green-500 mx-auto rounded-full mb-8"></div>
+            <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-green-500 mx-auto rounded-full mb-6 sm:mb-8"></div>
           </Reveal>
           
           <Reveal delay={100}>
-            <p className="text-slate-300 text-base md:text-lg leading-relaxed font-light mb-8">
+            <p className="text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed font-light mb-6 sm:mb-8">
               I am a dedicated full-stack developer who thrives at the intersection of slick interactive interfaces and robust server architectures. Whether engineering real-time data pipelines in Node.js or crafting responsive, SEO-ready web applications with Next.js & React, my approach guarantees speed, scalability, and code clarity.
             </p>
           </Reveal>
 
           <Reveal delay={180}>
-            <div className="flex flex-wrap justify-center gap-3 pt-2">
+            <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 pt-2">
               {[
                 "Next.js & SSR Ready",
                 "Scalable Microservices",
@@ -793,9 +793,9 @@ export default function Hero() {
               ].map((badge, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all text-slate-300 text-xs font-medium shadow-sm"
+                  className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all text-slate-300 text-xs font-medium shadow-sm"
                 >
-                  <CheckCircle2 size={14} className="text-emerald-400" /> {badge}
+                  <CheckCircle2 size={13} className="text-emerald-400 shrink-0 sm:w-3.5 sm:h-3.5" /> {badge}
                 </span>
               ))}
             </div>
@@ -806,33 +806,33 @@ export default function Hero() {
       {/* =========================================================================
           5. CORE EXPERTISE / SERVICES SUMMARY
       ========================================================================= */}
-      <section className="py-24 px-6 md:px-12 border-t border-slate-900 bg-slate-900/20">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 border-t border-slate-900 bg-slate-900/20">
         <div className="max-w-6xl mx-auto">
-          <Reveal className="text-center mb-16">
+          <Reveal className="text-center mb-12 sm:mb-16">
             <span className="text-emerald-400 text-xs font-mono uppercase tracking-widest block mb-2">What I Do Best</span>
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white mb-4">Core Technical Expertise</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-4">Core Technical Expertise</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 to-green-500 mx-auto rounded-full"></div>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {skills.map((skill, index) => (
               <Reveal key={index} delay={index * 90}>
-                <TiltCard className="h-full p-7 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 group flex flex-col justify-between shadow-xl">
+                <TiltCard className="h-full p-5 sm:p-7 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 group flex flex-col justify-between shadow-xl">
                   <div>
-                    <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-emerald-400 group-hover:to-green-600 group-hover:text-slate-950 transition-all duration-300 shadow-md">
-                      <skill.icon size={26} />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-5 sm:mb-6 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-emerald-400 group-hover:to-green-600 group-hover:text-slate-950 transition-all duration-300 shadow-md">
+                      <skill.icon size={24} className="sm:w-[26px] sm:h-[26px]" />
                     </div>
                     <div className="inline-block text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md mb-3 border border-emerald-500/20">
                       {skill.badge}
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
                       {skill.name}
                     </h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">
+                    <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
                       {skill.desc}
                     </p>
                   </div>
-                  <div className="pt-5 mt-4 border-t border-slate-800/80 flex items-center text-xs font-mono text-emerald-400 group-hover:translate-x-1 transition-transform">
+                  <div className="pt-4 sm:pt-5 mt-4 border-t border-slate-800/80 flex items-center text-xs font-mono text-emerald-400 group-hover:translate-x-1 transition-transform">
                     <span>Explore services &rarr;</span>
                   </div>
                 </TiltCard>
@@ -843,52 +843,53 @@ export default function Hero() {
       </section>
 
       {/* =========================================================================
-          6. FEATURED PROJECTS SHOWCASE
+          6. FEATURED PROJECTS SHOWCASE (FULLY RESPONSIVE ALL SCREENS)
       ========================================================================= */}
-      <section className="py-24 px-6 md:px-12 border-t border-slate-900 bg-slate-950">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 border-t border-slate-900 bg-slate-950">
         <div className="max-w-6xl mx-auto">
-          <Reveal className="flex flex-col md:flex-row md:items-end justify-between mb-16">
-            <div>
-              <span className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-2">
+          <Reveal className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-14 md:mb-16 gap-4">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest">
                 <Briefcase size={14} /> Portfolio Showcase
-              </span>
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white">Featured Projects</h2>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white">Featured Projects</h2>
             </div>
             <Link
               to="/work"
-              className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-mono mt-4 md:mt-0 font-semibold group"
+              className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-xs sm:text-sm font-mono font-semibold group w-fit"
             >
               View Full Work Archive <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {projects.map((proj, idx) => (
               <Reveal key={idx} delay={idx * 90}>
-                <TiltCard className="h-full bg-slate-900/60 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between hover:border-emerald-500/40 transition-colors duration-300 group shadow-2xl">
+                <TiltCard className="h-full bg-slate-900/60 border border-slate-800 rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 flex flex-col justify-between hover:border-emerald-500/40 transition-colors duration-300 group shadow-2xl">
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-6">
-                      <span className="text-xs font-mono uppercase tracking-wider text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-1.5 rounded-full font-bold">
+                    {/* Top tags & tech badges header */}
+                    <div className="flex flex-wrap items-center justify-between gap-2.5 mb-5 sm:mb-6">
+                      <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full font-bold">
                         {proj.tag}
                       </span>
-                      <div className="flex gap-1.5">
+                      <div className="flex flex-wrap gap-1.5">
                         {proj.tech.map((t, ti) => (
-                          <span key={ti} className="text-[10px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">
+                          <span key={ti} className="text-[10px] font-mono text-slate-400 bg-slate-800/90 border border-slate-700/50 px-2 py-0.5 rounded-md">
                             {t}
                           </span>
                         ))}
                       </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2.5 sm:mb-3 group-hover:text-emerald-300 transition-colors leading-snug">
                       {proj.title}
                     </h3>
-                    <p className="text-slate-400 text-sm mb-8 leading-relaxed">
+                    <p className="text-slate-400 text-xs sm:text-sm mb-6 sm:mb-8 leading-relaxed font-light">
                       {proj.desc}
                     </p>
                   </div>
 
-                  <div className="pt-5 border-t border-slate-800 flex items-center justify-between">
-                    <span className="text-xs text-slate-500 font-mono flex items-center gap-1.5">
+                  <div className="pt-4 sm:pt-5 border-t border-slate-800/80 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2">
+                    <span className="text-[11px] sm:text-xs text-slate-500 font-mono flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Production Grade
                     </span>
                     {proj.link ? (
@@ -896,16 +897,16 @@ export default function Hero() {
                         href={proj.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-emerald-400 hover:text-emerald-300 text-sm font-bold flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
+                        className="text-emerald-400 hover:text-emerald-300 text-xs sm:text-sm font-bold flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
                       >
-                        Live Demo <ExternalLink size={15} />
+                        Live Demo <ExternalLink size={14} />
                       </a>
                     ) : (
                       <Link
                         to="/Contact"
-                        className="text-emerald-400 hover:text-emerald-300 text-sm font-bold flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
+                        className="text-emerald-400 hover:text-emerald-300 text-xs sm:text-sm font-bold flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
                       >
-                        Discuss Details <ArrowRight size={15} />
+                        Discuss Details <ArrowRight size={14} />
                       </Link>
                     )}
                   </div>
@@ -919,7 +920,7 @@ export default function Hero() {
       {/* =========================================================================
           7. CALL TO ACTION BANNER
       ========================================================================= */}
-      <section className="relative py-24 px-6 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-t border-slate-900 text-center overflow-hidden">
+      <section className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-t border-slate-900 text-center overflow-hidden">
         <div className="gradient-move absolute top-0 left-1/3 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
         <div className="gradient-move-delay absolute bottom-0 right-1/3 w-80 h-80 bg-teal-600/15 rounded-full blur-3xl pointer-events-none" />
         
@@ -927,16 +928,16 @@ export default function Hero() {
           <span className="text-emerald-400 text-xs font-mono uppercase tracking-widest inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
             Let's Collaborate
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
             Have a project in mind or need a dedicated developer?
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto font-light">
+          <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-xl mx-auto font-light leading-relaxed">
             I am available for freelance contracts, full-stack web applications, Next.js migrations, and full-time opportunities.
           </p>
-          <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="pt-4 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
             <Link
               to="/Contact"
-              className="pulse-ring group relative inline-flex items-center gap-2 overflow-hidden px-10 py-4 bg-gradient-to-r from-emerald-400 via-teal-300 to-green-500 text-slate-950 font-black tracking-wider rounded-xl shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/50 hover:scale-105 transition-all text-sm uppercase"
+              className="pulse-ring group relative inline-flex items-center justify-center gap-2 overflow-hidden px-8 sm:px-10 py-3.5 sm:py-4 bg-gradient-to-r from-emerald-400 via-teal-300 to-green-500 text-slate-950 font-black tracking-wider rounded-xl shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/50 hover:scale-105 transition-all text-xs sm:text-sm uppercase"
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <span className="relative flex items-center gap-2">
@@ -947,7 +948,7 @@ export default function Hero() {
               href="https://wa.me/923484236919?text=Hi%20Ahmad,%20let's%20discuss%20a%20project!"
               target="_blank"
               rel="noreferrer"
-              className="px-8 py-4 bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-bold tracking-wider rounded-xl border border-slate-800 hover:border-emerald-500/40 transition-all text-sm uppercase flex items-center gap-2"
+              className="px-7 sm:px-8 py-3.5 sm:py-4 bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-bold tracking-wider rounded-xl border border-slate-800 hover:border-emerald-500/40 transition-all text-xs sm:text-sm uppercase flex items-center justify-center gap-2"
             >
               <MessageSquare size={16} className="text-emerald-400" /> WhatsApp Chat
             </a>
