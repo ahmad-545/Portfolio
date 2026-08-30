@@ -174,26 +174,26 @@ export default function Services() {
 
       <Navbar />
 
-      <main className="flex-grow max-w-6xl mx-auto w-full px-6 md:px-12 pt-10 md:pt-16 pb-20 relative z-20">
+      <main className="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 md:px-12 pt-8 sm:pt-10 md:pt-16 pb-16 md:pb-20 relative z-20">
         
         {/* Title Container - Properly spaced */}
-        <div className="w-full mb-14 text-center lg:text-left pt-4">
+        <div className="w-full mb-10 sm:mb-14 text-center lg:text-left pt-2 sm:pt-4">
           <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-3">
             <Terminal size={14} /> What I Offer
           </div>
           <div>
-            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight relative inline-block pb-3 after:absolute after:bottom-0 after:left-1/2 lg:after:left-0 after:transform after:-translate-x-1/2 lg:after:translate-x-0 after:w-20 after:h-1.5 after:bg-gradient-to-r after:from-emerald-400 after:to-teal-400 after:rounded-full">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight relative inline-block pb-3.5 after:absolute after:bottom-0 after:left-1/2 lg:after:left-0 after:transform after:-translate-x-1/2 lg:after:translate-x-0 after:w-20 after:h-1.5 after:bg-gradient-to-r after:from-emerald-400 after:to-teal-400 after:rounded-full">
               My Services
             </h1>
           </div>
         </div>
 
         {/* Dynamic Grid with TiltCards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {customServices.map((value, i) => (
             <Reveal key={i} delay={i * 100}>
-              <TiltCard className="h-full bg-slate-900/70 border border-slate-800 hover:border-emerald-500/40 p-8 rounded-2xl shadow-xl transition-colors duration-300 group flex flex-col justify-between min-h-[320px]">
-                <div className="space-y-4">
+              <TiltCard className="h-full bg-slate-900/70 border border-slate-800 hover:border-emerald-500/40 p-5 sm:p-7 md:p-8 rounded-2xl shadow-xl transition-colors duration-300 group flex flex-col justify-between min-h-[auto] md:min-h-[320px]">
+                <div className="space-y-3.5 sm:space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300 font-mono">
                       {value.s_no}
@@ -201,16 +201,16 @@ export default function Services() {
                     <Sparkles size={16} className="text-emerald-400 opacity-50 group-hover:opacity-100 transition-opacity" />
                   </div>
                   
-                  <h2 className="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors duration-300">
+                  <h2 className="text-xl sm:text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors duration-300">
                     {value.s_name}
                   </h2>
                   
-                  <p className="text-slate-400 text-sm font-light leading-relaxed">
+                  <p className="text-slate-400 text-xs sm:text-sm font-light leading-relaxed">
                     {value.s_desc}
                   </p>
                 </div>
 
-                <div className="pt-6 border-t border-slate-800/80 mt-6 flex items-center justify-between opacity-80 group-hover:opacity-100 transition-opacity">
+                <div className="pt-4 sm:pt-6 border-t border-slate-800/80 mt-5 sm:mt-6 flex items-center justify-between opacity-80 group-hover:opacity-100 transition-opacity">
                   <span className="text-xs font-bold uppercase tracking-widest text-slate-300 group-hover:text-white transition-colors font-mono">
                     Learn More
                   </span>

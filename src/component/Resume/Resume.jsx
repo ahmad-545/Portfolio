@@ -155,19 +155,19 @@ export default function Resume() {
 
       <Navbar />
 
-      <main className="flex-grow py-16 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto w-full relative z-20 text-slate-300">
+      <main className="flex-grow py-10 sm:py-14 md:py-16 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto w-full relative z-20 text-slate-300">
         
         {/* Header Options */}
-        <Reveal className="flex justify-between items-center mb-10 border-b border-slate-800/80 pb-5">
+        <Reveal className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 sm:mb-10 border-b border-slate-800/80 pb-5">
           <div>
             <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-1">
               <Terminal size={14} /> Official Document
             </div>
-            <h1 className="text-3xl font-black text-white">Curriculum Vitae</h1>
+            <h1 className="text-2xl sm:text-3xl font-black text-white">Curriculum Vitae</h1>
           </div>
           <button 
             onClick={() => window.print()} 
-            className="flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/40 rounded-xl text-xs font-bold text-emerald-400 uppercase tracking-widest transition-all shadow-md group"
+            className="flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/40 rounded-xl text-xs font-bold text-emerald-400 uppercase tracking-widest transition-all shadow-md group w-full sm:w-auto"
           >
             <span>Print / Download PDF</span>
             <Download size={14} className="transform group-hover:translate-y-0.5 transition-transform" />
@@ -176,36 +176,36 @@ export default function Resume() {
 
         {/* Resume Sheet */}
         <Reveal delay={100}>
-          <TiltCard className="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 hover:border-emerald-500/30 rounded-2xl p-6 md:p-10 shadow-2xl space-y-8 transition-colors">
+          <TiltCard className="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 hover:border-emerald-500/30 rounded-2xl p-5 sm:p-7 md:p-10 shadow-2xl space-y-6 sm:space-y-8 transition-colors">
             
             {/* Top Identity Block */}
-            <div className="text-center sm:text-left flex flex-col sm:flex-row justify-between items-start gap-4 pb-6 border-b border-slate-800/60">
+            <div className="text-center sm:text-left flex flex-col sm:flex-row justify-between items-center sm:items-start gap-4 pb-6 border-b border-slate-800/60 w-full">
               <div>
-                <h2 className="text-3xl font-black text-white">MUHAMMAD AHMAD</h2>
-                <p className="text-emerald-400 font-semibold tracking-wide text-sm mt-1">Full Stack Developer</p>
+                <h2 className="text-2xl sm:text-3xl font-black text-white">MUHAMMAD AHMAD</h2>
+                <p className="text-emerald-400 font-semibold tracking-wide text-xs sm:text-sm mt-1">Full Stack Developer</p>
               </div>
-              <div className="text-sm text-slate-400 space-y-1 text-center sm:text-right w-full sm:w-auto font-mono text-xs">
-                <p>📧 ahmaddev545@gmail.com | 📱 +92 348 4236919</p>
+              <div className="text-xs text-slate-400 space-y-1 text-center sm:text-right w-full sm:w-auto font-mono">
+                <p className="break-all sm:break-normal">📧 ahmaddev545@gmail.com | 📱 +92 348 4236919</p>
                 <p>📍 Lahore, Pakistan</p>
-                <p className="text-emerald-400/80">github.com/ahmad-545 | linkedin.com/in/muhammad-ahmad-9b031530a</p>
+                <p className="text-emerald-400/80 break-all sm:break-normal">github.com/ahmad-545 | linkedin.com/in/muhammad-ahmad-9b031530a</p>
               </div>
             </div>
 
             {/* Summary */}
             <div className="space-y-2">
               <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">Professional Summary</h3>
-              <p className="text-slate-300 text-sm leading-relaxed font-light">
-                Full Stack Developer skilled in building responsive, user-friendly, and scalable web applications using the MERN stack[cite: 1]. Experienced in developing RESTful APIs, secure authentication systems, database-driven applications, and modern React interfaces[cite: 1]. Skilled in AI integration and building real-world applications with a strong focus on clean code, performance, and problem-solving[cite: 1].
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-light">
+                Full Stack Developer skilled in building responsive, user-friendly, and scalable web applications using the MERN stack. Experienced in developing RESTful APIs, secure authentication systems, database-driven applications, and modern React interfaces. Skilled in AI integration and building real-world applications with a strong focus on clean code, performance, and problem-solving.
               </p>
             </div>
 
             {/* Technical Skills */}
             <div className="space-y-3">
               <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">Technical Skill Matrix</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm bg-slate-950/60 p-5 rounded-xl border border-slate-900">
-                <p><strong className="text-white font-mono text-xs text-emerald-300">Tech Stack:</strong> MongoDB, Express.js, React.js, Node.js (MERN)[cite: 1]</p>
-                <p><strong className="text-white font-mono text-xs text-emerald-300">Languages:</strong> JavaScript, Python[cite: 1]</p>
-                <p className="sm:col-span-2"><strong className="text-white font-mono text-xs text-emerald-300">Tools & AI Integration:</strong> GitHub, Version Control, REST APIs, JWT Authentication, Postman, Responsive UI Design[cite: 1]</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm bg-slate-950/60 p-4 sm:p-5 rounded-xl border border-slate-900">
+                <p><strong className="text-white font-mono text-xs text-emerald-300">Tech Stack:</strong> MongoDB, Express.js, React.js, Node.js (MERN)</p>
+                <p><strong className="text-white font-mono text-xs text-emerald-300">Languages:</strong> JavaScript, Python</p>
+                <p className="sm:col-span-2"><strong className="text-white font-mono text-xs text-emerald-300">Tools & AI Integration:</strong> GitHub, Version Control, REST APIs, JWT Authentication, Postman, Responsive UI Design</p>
               </div>
             </div>
 
@@ -216,52 +216,52 @@ export default function Resume() {
               {/* Project 1 */}
               <div className="space-y-2">
                 <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <h4 className="text-lg font-bold text-white flex items-center gap-2">
+                  <h4 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                     Virtual Try-On Clothing Web Application <span className="text-slate-500 text-xs font-normal font-mono">(Final Year Project)</span>
                   </h4>
-                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">2026[cite: 1]</span>
+                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">2026</span>
                 </div>
                 <p className="text-xs text-emerald-400 font-mono flex items-center gap-1">
-                  <ExternalLink size={12} /> Live: trylo.store[cite: 1]
+                  <ExternalLink size={12} /> Live: trylo.store
                 </p>
-                <ul className="list-disc pl-5 text-sm text-slate-400 space-y-1.5 font-light">
-                  <li>Built a full MERN stack e-commerce clothing store solving a major online shopping problem: customers being unable to preview how clothes look on them before buying[cite: 1].</li>
-                  <li>Integrated an AI-powered virtual try-on feature using the VITON-HD model, allowing users to upload a photo and see a realistic 3D preview[cite: 1].</li>
-                  <li>Designed a clean product catalog, secure user account management, and encrypted data storage to support a production-style shopping experience[cite: 1].</li>
-                  <li>Implemented RESTful APIs and authentication flows connecting the React.js frontend with a Node.js/Express backend and MongoDB database[cite: 1].</li>
+                <ul className="list-disc pl-5 text-xs sm:text-sm text-slate-400 space-y-1.5 font-light">
+                  <li>Built a full MERN stack e-commerce clothing store solving a major online shopping problem: customers being unable to preview how clothes look on them before buying.</li>
+                  <li>Integrated an AI-powered virtual try-on feature using the VITON-HD model, allowing users to upload a photo and see a realistic 3D preview.</li>
+                  <li>Designed a clean product catalog, secure user account management, and encrypted data storage to support a production-style shopping experience.</li>
+                  <li>Implemented RESTful APIs and authentication flows connecting the React.js frontend with a Node.js/Express backend and MongoDB database.</li>
                 </ul>
               </div>
 
               {/* Project 2 */}
               <div className="space-y-2 pt-2 border-t border-slate-800/40">
                 <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <h4 className="text-lg font-bold text-white">AI-Powered Personal Expense & Subscription Tracker</h4>
-                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">2026[cite: 1]</span>
+                  <h4 className="text-base sm:text-lg font-bold text-white">AI-Powered Personal Expense & Subscription Tracker</h4>
+                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">2026</span>
                 </div>
                 <p className="text-xs text-emerald-400 font-mono flex items-center gap-1">
-                  <ExternalLink size={12} /> Live: Expense AI[cite: 1]
+                  <ExternalLink size={12} /> Live: Expense AI
                 </p>
-                <ul className="list-disc pl-5 text-sm text-slate-400 space-y-1.5 font-light">
-                  <li>Built a MERN stack financial management platform for tracking personal expenses, subscriptions, budgets, cards, and financial activity in one place[cite: 1].</li>
-                  <li>Implemented JWT authentication, expense and subscription management, budget limits, interactive dashboards, reports, and data export[cite: 1].</li>
-                  <li>Integrated AI-powered spending analysis for personalized saving suggestions and budget warnings[cite: 1].</li>
-                  <li>Added automated subscription renewal alerts and reminders using Node-cron. Developed the interface with React.js, Tailwind CSS, and MongoDB Atlas[cite: 1].</li>
+                <ul className="list-disc pl-5 text-xs sm:text-sm text-slate-400 space-y-1.5 font-light">
+                  <li>Built a MERN stack financial management platform for tracking personal expenses, subscriptions, budgets, cards, and financial activity in one place.</li>
+                  <li>Implemented JWT authentication, expense and subscription management, budget limits, interactive dashboards, reports, and data export.</li>
+                  <li>Integrated AI-powered spending analysis for personalized saving suggestions and budget warnings.</li>
+                  <li>Added automated subscription renewal alerts and reminders using Node-cron. Developed the interface with React.js, Tailwind CSS, and MongoDB Atlas.</li>
                 </ul>
               </div>
 
               {/* Project 3 */}
               <div className="space-y-2 pt-2 border-t border-slate-800/40">
                 <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <h4 className="text-lg font-bold text-white">Personal Portfolio Website</h4>
-                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">2025[cite: 1]</span>
+                  <h4 className="text-base sm:text-lg font-bold text-white">Personal Portfolio Website</h4>
+                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">2025</span>
                 </div>
                 <p className="text-xs text-emerald-400 font-mono flex items-center gap-1">
-                  <ExternalLink size={12} /> Live: Portfolio[cite: 1]
+                  <ExternalLink size={12} /> Live: Portfolio
                 </p>
-                <ul className="list-disc pl-5 text-sm text-slate-400 space-y-1.5 font-light">
-                  <li>Developed a fully responsive personal portfolio using React.js to showcase skills, projects, and contact details[cite: 1].</li>
-                  <li>Built modern, reusable UI components with smooth navigation and cross-device responsiveness[cite: 1].</li>
-                  <li>Integrated a working contact form via Email API for direct visitor messages and optimized the site for performance and accessibility[cite: 1].</li>
+                <ul className="list-disc pl-5 text-xs sm:text-sm text-slate-400 space-y-1.5 font-light">
+                  <li>Developed a fully responsive personal portfolio using React.js to showcase skills, projects, and contact details.</li>
+                  <li>Built modern, reusable UI components with smooth navigation and cross-device responsiveness.</li>
+                  <li>Integrated a working contact form via Email API for direct visitor messages and optimized the site for performance and accessibility.</li>
                 </ul>
               </div>
             </div>
@@ -269,14 +269,14 @@ export default function Resume() {
             {/* Education */}
             <div className="space-y-3 pt-2 border-t border-slate-800/40">
               <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">Education</h3>
-              <div className="space-y-1 bg-slate-950/40 p-4 rounded-xl border border-slate-900">
+              <div className="space-y-1 bg-slate-950/40 p-3.5 sm:p-4 rounded-xl border border-slate-900">
                 <div className="flex justify-between items-baseline flex-wrap gap-2">
-                  <h4 className="text-base font-bold text-white">BS in Computer Science[cite: 1]</h4>
-                  <span className="text-xs font-mono font-bold text-slate-400">2022 - 2026[cite: 1]</span>
+                  <h4 className="text-sm sm:text-base font-bold text-white">BS in Computer Science</h4>
+                  <span className="text-xs font-mono font-bold text-slate-400">2022 - 2026</span>
                 </div>
-                <p className="text-sm text-emerald-300 font-medium">Minhaj University Lahore[cite: 1]</p>
+                <p className="text-xs sm:text-sm text-emerald-300 font-medium">Minhaj University Lahore</p>
                 <p className="text-xs text-slate-400 font-light pt-1">
-                  Graduated with a strong foundation in Object-Oriented Programming (OOP), Data Structures & Algorithms (DSA), and Programming Fundamentals[cite: 1].
+                  Graduated with a strong foundation in Object-Oriented Programming (OOP), Data Structures & Algorithms (DSA), and Programming Fundamentals.
                 </p>
               </div>
             </div>

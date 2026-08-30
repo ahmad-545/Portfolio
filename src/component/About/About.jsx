@@ -214,34 +214,34 @@ export default function About() {
 
       <Navbar />
 
-      <main className="flex-grow max-w-6xl mx-auto w-full px-6 md:px-12 pt-10 md:pt-16 pb-20 relative z-20">
+      <main className="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 md:px-12 pt-8 sm:pt-10 md:pt-16 pb-16 md:pb-20 relative z-20">
 
         {/* Title Section - Guaranteed gap before grid starts */}
-        <Reveal className="mb-12 md:mb-16 text-center lg:text-left">
+        <Reveal className="mb-10 sm:mb-12 md:mb-16 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-3">
             <Terminal size={14} /> Get to Know Me
           </div>
           <div>
-            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight relative inline-block pb-4 after:absolute after:bottom-0 after:left-1/2 lg:after:left-0 after:transform after:-translate-x-1/2 lg:after:translate-x-0 after:w-20 after:h-1.5 after:bg-gradient-to-r after:from-emerald-400 after:to-teal-400 after:rounded-full">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight relative inline-block pb-3.5 after:absolute after:bottom-0 after:left-1/2 lg:after:left-0 after:transform after:-translate-x-1/2 lg:after:translate-x-0 after:w-20 after:h-1.5 after:bg-gradient-to-r after:from-emerald-400 after:to-teal-400 after:rounded-full">
               About Me
             </h1>
           </div>
         </Reveal>
 
         {/* Content Grid - Using items-start to prevent layout overlap */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start mb-16 md:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12 sm:mb-16 md:mb-20">
 
           {/* Left Column: Floating Image Card */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-start">
-            <Reveal className="w-full max-w-sm">
+          <div className="lg:col-span-5 flex justify-center lg:justify-start w-full">
+            <Reveal className="w-full max-w-xs sm:max-w-sm">
               <div className="relative group float-bob">
                 <div className="spin-slow absolute -inset-3 rounded-[2rem] bg-[conic-gradient(from_0deg,#10b981,#34d399,#059669,#10b981)] opacity-40 blur-md pointer-events-none"></div>
                 <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-teal-600 rounded-3xl blur-xl opacity-50 group-hover:opacity-80 transition duration-500"></div>
-                <div className="relative bg-slate-900 border border-slate-800 p-3 rounded-3xl shadow-2xl overflow-hidden">
+                <div className="relative bg-slate-900 border border-slate-800 p-2.5 sm:p-3 rounded-3xl shadow-2xl overflow-hidden">
                   <img
                     src={pic}
                     alt="Ahmad Profile Workspace"
-                    className="rounded-2xl w-full h-[360px] sm:h-[400px] object-cover transform group-hover:scale-105 transition-transform duration-500 filter brightness-95 group-hover:brightness-100"
+                    className="rounded-2xl w-full h-[300px] sm:h-[380px] md:h-[400px] object-cover transform group-hover:scale-105 transition-transform duration-500 filter brightness-95 group-hover:brightness-100"
                   />
                 </div>
               </div>
@@ -249,10 +249,10 @@ export default function About() {
           </div>
 
           {/* Right Column: Bio Paragraph + Technical Skills */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6 w-full">
             <Reveal delay={100}>
-              <TiltCard className="p-6 sm:p-8 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 transition-colors">
-                <p className="text-slate-300 text-base md:text-lg font-light leading-relaxed">
+              <TiltCard className="p-5 sm:p-7 md:p-8 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 transition-colors shadow-xl">
+                <p className="text-slate-300 text-sm sm:text-base md:text-lg font-light leading-relaxed">
                   I am a passionate <span className="text-emerald-400 font-medium">Full-Stack Developer</span> and MERN Stack specialist dedicated to building efficient, scale-ready web applications. I bridge the gap between design and robust server architecture—crafting rich, responsive user interfaces with React, managing database state with MongoDB, and engineering scalable backend systems utilizing Node.js and Express.
                 </p>
               </TiltCard>
@@ -260,21 +260,21 @@ export default function About() {
 
             {/* Technical Proficiency Progress Bars */}
             <Reveal delay={200}>
-              <div className="space-y-4 bg-slate-950/60 p-6 rounded-2xl border border-slate-900 shadow-xl">
+              <div className="space-y-4 bg-slate-950/60 p-4 sm:p-6 rounded-2xl border border-slate-900 shadow-xl">
                 <h3 className="text-xs sm:text-sm font-mono uppercase tracking-widest text-emerald-400 mb-4 flex items-center gap-2">
                   <Code size={16} /> Technical Proficiency
                 </h3>
                 {skillsData.map((skill, index) => (
-                  <div key={index} className="space-y-2 group">
-                    <div className="flex justify-between text-xs sm:text-sm font-semibold tracking-wide text-slate-300">
-                      <p className="group-hover:text-emerald-400 transition-colors">
+                  <div key={index} className="space-y-1.5 group">
+                    <div className="flex justify-between items-center gap-2 text-xs sm:text-sm font-semibold tracking-wide text-slate-300">
+                      <p className="group-hover:text-emerald-400 transition-colors line-clamp-1 sm:line-clamp-none">
                         {skill.name}
                       </p>
-                      <span className="text-emerald-400 font-mono">
+                      <span className="text-emerald-400 font-mono shrink-0">
                         {skill.level}
                       </span>
                     </div>
-                    <div className="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden border border-slate-800/80">
+                    <div className="w-full bg-slate-900 h-2 sm:h-2.5 rounded-full overflow-hidden border border-slate-800/80">
                       <div
                         className={`h-full bg-gradient-to-r ${skill.color} ${skill.width} rounded-full transition-all duration-700 shadow-[0_0_10px_rgba(52,211,153,0.3)]`}
                       ></div>
@@ -288,9 +288,9 @@ export default function About() {
         </div>
 
         {/* GitHub Contributions Section */}
-        <Reveal delay={250} className="mb-16">
-          <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl">
-            <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+        <Reveal delay={250} className="mb-12 sm:mb-16">
+          <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800 p-4 sm:p-6 md:p-8 rounded-2xl shadow-xl">
+            <div className="flex items-center justify-between mb-4 sm:mb-6 flex-wrap gap-2.5 sm:gap-4">
               <h3 className="text-xs sm:text-sm font-mono uppercase tracking-widest text-emerald-400 flex items-center gap-2">
                 <GitBranch size={16} /> GitHub Contributions & Activity
               </h3>
@@ -304,13 +304,13 @@ export default function About() {
               </a>
             </div>
             
-            <div className="overflow-x-auto flex justify-center py-2 bg-slate-950/50 p-4 rounded-xl border border-slate-900">
+            <div className="overflow-x-auto w-full py-3 bg-slate-950/50 p-3 sm:p-4 rounded-xl border border-slate-900 flex lg:justify-center">
               <GitHubCalendar 
                 username="ahmad-545" 
                 colorScheme="dark"
-                fontSize={13}
-                blockSize={12}
-                blockMargin={4}
+                fontSize={12}
+                blockSize={11}
+                blockMargin={3.5}
                 theme={{
                   dark: ['#090d16', '#064e3b', '#047857', '#10b981', '#34d399'],
                 }}
@@ -321,16 +321,16 @@ export default function About() {
 
         {/* Counters / Stats Block */}
         <Reveal delay={300}>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 bg-slate-900/50 backdrop-blur-md border border-slate-800/80 rounded-2xl p-8 text-center shadow-2xl">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 bg-slate-900/50 backdrop-blur-md border border-slate-800/80 rounded-2xl p-5 sm:p-8 text-center shadow-2xl">
             {stats.map((stat, idx) => (
               <div
                 key={idx}
-                className="space-y-2 relative group py-4 sm:py-0 last:border-none border-b sm:border-b-0 sm:border-r border-slate-800/80"
+                className="space-y-1.5 sm:space-y-2 relative group py-3 sm:py-0 last:border-none border-b sm:border-b-0 sm:border-r border-slate-800/80"
               >
-                <h2 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300 group-hover:scale-110 transition-transform duration-300 inline-block">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300 group-hover:scale-110 transition-transform duration-300 inline-block">
                   {stat.metrics}
                 </h2>
-                <p className="text-xs font-bold tracking-widest text-slate-400 uppercase font-mono">
+                <p className="text-[11px] sm:text-xs font-bold tracking-widest text-slate-400 uppercase font-mono">
                   {stat.label}
                 </p>
               </div>
