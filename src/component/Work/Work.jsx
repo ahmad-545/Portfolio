@@ -161,7 +161,7 @@ export default function Work() {
 
       <main className="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 md:px-12 pt-8 sm:pt-10 md:pt-16 pb-16 md:pb-20 relative z-20">
         
-        {/* Section Header - Properly spaced and isolated */}
+        {/* Section Header */}
         <div className="w-full mb-10 sm:mb-14 text-center lg:text-left pt-2 sm:pt-4">
           <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-3">
             <Terminal size={14} /> Portfolio Showcase
@@ -178,13 +178,18 @@ export default function Work() {
           {mywork_data.slice(0, visibleCount).map((value, i) => (
             <Reveal key={i} delay={i * 80}>
               <TiltCard className="h-full overflow-hidden rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-emerald-500/40 flex flex-col justify-between group shadow-xl transition-colors">
-                <div className="relative overflow-hidden aspect-video">
+                <a 
+                  href={value.w_link || "#"} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block relative overflow-hidden aspect-video cursor-pointer"
+                >
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-0 group-hover:opacity-95 transition-opacity duration-300 z-10 flex flex-col justify-end p-4 sm:p-6">
                     <h3 className="text-base sm:text-lg font-bold text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                      Project {i + 1}
+                      {value.w_name || `Project ${i + 1}`}
                     </h3>
                     <p className="text-emerald-400 text-[11px] sm:text-xs font-semibold tracking-wider uppercase mt-1 flex items-center gap-1">
-                      <Code size={12} /> MERN / Full Stack App
+                      <Code size={12} /> View Live Project
                     </p>
                   </div>
                   <img 
@@ -192,13 +197,18 @@ export default function Work() {
                     alt={`Showcase portfolio component module node ${i}`} 
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 filter brightness-90 group-hover:brightness-100"
                   />
-                </div>
+                </a>
                 
                 <div className="p-4 sm:p-5 border-t border-slate-800/80 flex items-center justify-between bg-slate-950/40">
                   <span className="text-[11px] sm:text-xs text-slate-400 font-mono">Production Ready</span>
-                  <span className="text-emerald-400 text-xs font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <a 
+                    href={value.w_link || "#"} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-emerald-400 text-xs font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                  >
                     Explore <ExternalLink size={14} />
-                  </span>
+                  </a>
                 </div>
               </TiltCard>
             </Reveal>
@@ -210,7 +220,7 @@ export default function Work() {
           <Reveal className="flex justify-center">
             <button 
               onClick={() => setVisibleCount((prev) => prev + 3)}
-              className="flex items-center justify-center gap-3 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/40 text-slate-200 hover:text-white font-medium tracking-wide text-xs sm:text-sm px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl transition-all shadow-lg group shadow-emerald-500/5 hover:-translate-y-0.5 w-full sm:w-auto"
+              className="flex items-center justify-center gap-3 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/40 text-slate-200 hover:text-white font-medium tracking-wide text-xs sm:text-sm px-6 sm:px-4 py-3.5 sm:py-4 rounded-xl transition-all shadow-lg group shadow-emerald-500/5 hover:-translate-y-0.5 w-full sm:w-auto"
             >
               <span>Show More Projects</span>
               <img 

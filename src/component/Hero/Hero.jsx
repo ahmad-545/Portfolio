@@ -231,7 +231,7 @@ export default function Hero() {
 
   const projects = [
     {
-      title: "AI-Powered Virtual Try-On",
+      title: "Virtual Try-On Clothing Web Application",
       desc: "An advanced MERN stack & AI web application enabling users to seamlessly try on clothing items virtually in real-time.",
       tag: "Full Stack / AI",
       link: "https://trylo.store/",
@@ -245,24 +245,24 @@ export default function Hero() {
       tech: ["React", "Express", "MongoDB", "OpenAI"]
     },
     {
-      title: "Trylo Premium E-Commerce",
-      desc: "Comprehensive online shopping platform featuring secure multi-vendor checkouts, dynamic cart management, and admin console.",
-      tag: "MERN Stack",
-      link: null,
-      tech: ["React", "Node.js", "Express", "Stripe"]
+      title: "Phonify Store",
+      desc: "A sleek, modern mobile and electronics e-commerce store frontend built with Next.js, featuring responsive layouts and smooth UI.",
+      tag: "Next.js Frontend",
+      link: "https://phonify.store/",
+      tech: ["Next.js", "React", "Tailwind CSS"]
     },
     {
-      title: "High-Speed Connection Pooler",
-      desc: "High-efficiency backend utility optimized for handling heavy concurrent database queries across MongoDB clusters.",
-      tag: "Backend Engineering",
-      link: null,
-      tech: ["Node.js", "MongoDB", "Redis", "Docker"]
+      title: "Traffic Emissions Lahore",
+      desc: "An informative web platform built with HTML, CSS, and JavaScript to track, analyze, and raise awareness about traffic emissions and environmental impact in Lahore.",
+      tag: "HTML / CSS / JS",
+      link: "https://khaki-donkey-774900.hostingersite.com/index.html",
+      tech: ["HTML5", "CSS3", "JavaScript"]
     }
   ];
 
   const [statsRef, statsVisible] = useReveal(0.2);
   const yearsExp = useCountUp(1, statsVisible);
-  const projectsCount = useCountUp(80, statsVisible);
+  const projectsCount = useCountUp(15, statsVisible);
   const clientsCount = useCountUp(10, statsVisible);
   const codeQuality = useCountUp(100, statsVisible);
 
