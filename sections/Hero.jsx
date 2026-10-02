@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import Magnetic from '@/components/Magnetic'
 import { useApp } from '@/components/Providers'
 import { me } from '@/data'
-const Scene = dynamic(() => import('@/components/Scene'), { ssr: false })
+const Robot3D = dynamic(() => import('@/components/Robot3D'), { ssr: false })
 const ease = [0.76, 0, 0.24, 1]
 const Line = ({ children, d = 0 }) => (<span className="block overflow-hidden pb-1"><motion.span className="block" initial={{ y: '110%' }} animate={{ y: 0 }} transition={{ duration: 1, ease, delay: d }}>{children}</motion.span></span>)
 
@@ -17,9 +17,11 @@ export default function Hero() {
   return (
     <section id="hero" ref={ref} className="relative min-h-[110vh] bg-ink text-white">
       <div className="sticky top-0 min-h-screen overflow-hidden flex items-center px-5 md:px-16 py-16">
-        <motion.div style={{ opacity }} className="absolute inset-0 pointer-events-none opacity-40"><Scene /></motion.div>
-        
-        <div className="relative z-10 w-full max-w-7xl mx-auto grid lg:grid-cols-[1.15fr_0.85fr] items-center gap-8 lg:gap-12">
+        {/* Subtle Ambient Background - 3D background model removed as requested */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_70%_70%_at_70%_30%,rgba(6,182,212,0.07),transparent_70%)]" />
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_60%_60%_at_20%_60%,rgba(245,163,0,0.05),transparent_70%)]" />
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] items-center gap-8 lg:gap-12">
           {/* Left Column: Headline and CTAs */}
           <motion.div style={{ y, opacity }} className="pt-6 lg:pt-0">
             <p className="text-accent tracking-[0.25em] text-[11px] md:text-xs mb-4 h-4 font-semibold">{me.roles[i].toUpperCase()}</p>
@@ -39,50 +41,48 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Column: 3D Robot Image Showcase */}
+          {/* Right Column: 3D Robot Interactive Model */}
           <motion.div
             style={{ y, opacity }}
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            initial={{ opacity: 0, scale: 0.92, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1.2, ease, delay: 0.2 }}
-            className="relative flex items-center justify-center order-first lg:order-last mt-6 lg:mt-0"
+            className="relative flex items-center justify-center order-first lg:order-last mt-4 lg:mt-0"
           >
-            {/* Ambient Cyan & Gold Glows */}
-            <div className="absolute w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-cyan-500/20 blur-[90px] pointer-events-none" />
-            <div className="absolute w-52 h-52 rounded-full bg-accent/20 blur-[80px] pointer-events-none -bottom-6" />
+            {/* Ambient Cyber Glow Behind Robot */}
+            <div className="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-cyan-500/15 blur-[100px] pointer-events-none" />
+            <div className="absolute w-60 h-60 rounded-full bg-accent/15 blur-[90px] pointer-events-none -bottom-8" />
 
-            {/* Floating 3D Robot */}
-            <motion.div
-              animate={{ y: [0, -16, 0] }}
-              transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative z-10 w-full max-w-[260px] sm:max-w-[320px] lg:max-w-[390px] filter drop-shadow-[0_20px_40px_rgba(6,182,212,0.35)]"
-            >
-              <img
-                src="/images/hero-robot.png"
-                alt="3D AI Assistant Robot"
-                className="w-full h-auto object-contain select-none pointer-events-none"
-              />
+            {/* Interactive 3D Robot Container */}
+            <div className="relative z-10 w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[540px]">
+              <Robot3D />
 
               {/* Floating Badge 1 - AI Status */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-                className="absolute top-2 -right-2 sm:right-2 bg-slate-900/90 backdrop-blur-md border border-cyan-400/40 px-3.5 py-1.5 rounded-full text-xs text-white shadow-xl flex items-center gap-2"
+                transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                className="absolute top-4 -right-1 sm:right-4 bg-slate-950/85 backdrop-blur-md border border-cyan-400/40 px-3.5 py-1.5 rounded-full text-xs text-white shadow-[0_10px_25px_rgba(6,182,212,0.25)] flex items-center gap-2 pointer-events-none"
               >
                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-                <span className="font-medium text-[11px] tracking-wide text-cyan-200">3D AI Agent</span>
+                <span className="font-medium text-[11px] tracking-wide text-cyan-200">3D AI Agent • Online</span>
               </motion.div>
 
-              {/* Floating Badge 2 - Full Stack */}
+              {/* Floating Badge 2 - Tech Stack */}
               <motion.div
                 animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-                className="absolute bottom-4 -left-2 sm:left-2 bg-slate-900/90 backdrop-blur-md border border-accent/40 px-3.5 py-1.5 rounded-full text-xs text-white shadow-xl flex items-center gap-2"
+                transition={{ duration: 4.4, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+                className="absolute bottom-6 -left-1 sm:left-4 bg-slate-950/85 backdrop-blur-md border border-accent/40 px-3.5 py-1.5 rounded-full text-xs text-white shadow-[0_10px_25px_rgba(245,163,0,0.25)] flex items-center gap-2 pointer-events-none"
               >
                 <span className="w-2 h-2 rounded-full bg-accent" />
-                <span className="font-medium text-[11px] tracking-wide text-accent">SaaS &amp; MERN</span>
+                <span className="font-medium text-[11px] tracking-wide text-accent">Full Stack &amp; Automation</span>
               </motion.div>
-            </motion.div>
+
+              {/* 3D Interactive Hint Pill */}
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white/5 border border-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] text-white/50 tracking-wider uppercase pointer-events-none flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                Interactive 3D • Move Cursor
+              </div>
+            </div>
           </motion.div>
         </div>
 

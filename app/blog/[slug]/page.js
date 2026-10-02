@@ -12,6 +12,11 @@ export default function Page({ params }) {
     <article className="bg-white text-ink py-14 md:py-20 px-5 md:px-16">
       <div className="max-w-3xl mx-auto">
         <h2 className="font-display font-bold text-3xl md:text-5xl leading-tight">{p.title}</h2>
+        {p.image && (
+          <div className="mt-8 rounded-3xl overflow-hidden aspect-[16/9] shadow-lg border border-black/5 bg-slate-950">
+            <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
+          </div>
+        )}
         <div className="mt-10 space-y-6 text-base md:text-lg text-black/70 leading-relaxed">{p.body.map((t, i) => <p key={i}>{t}</p>)}</div>
         <TLink href="/blog" className="inline-block mt-12 bg-accent font-semibold px-8 py-3 rounded-full">← All articles</TLink>
       </div>
