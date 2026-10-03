@@ -49,8 +49,8 @@ export default function Providers({ children }) {
     <Ctx.Provider value={{ go }}>
       <CustomCursor /><ScrollProgress />
       <AnimatePresence>{loading && <Preloader onDone={() => setLoading(false)} />}</AnimatePresence>
-      <div style={{ opacity: loading ? 0 : 1 }}>{children}</div>
-      <motion.div className="fixed inset-0 z-[90] bg-accent pointer-events-none flex items-center justify-center p-4 text-center" style={{ transformOrigin: origin }}
+      <div style={{ opacity: loading ? 0 : 1 }} className="overflow-x-hidden w-full max-w-full relative">{children}</div>
+      <motion.div className="fixed inset-0 z-[90] bg-accent pointer-events-none flex items-center justify-center p-4 text-center overflow-hidden max-w-full" style={{ transformOrigin: origin }}
         initial={{ scaleY: 0 }} animate={{ scaleY: cover ? 1 : 0 }} transition={{ duration: 0.75, ease }}>
         <span className="font-display text-3xl sm:text-5xl md:text-8xl font-bold text-ink uppercase tracking-tight">{label}</span>
       </motion.div>

@@ -5,7 +5,7 @@ import { skills, skillGroups } from '@/data'
 export default function Skills() {
   return (<>
     <Marquee items={skills} />
-    <section id="skills" className="bg-ink text-white py-16 sm:py-20 md:py-28 px-4 sm:px-5 md:px-10 lg:px-16">
+    <section id="skills" className="bg-ink text-white py-16 sm:py-20 md:py-28 px-4 sm:px-5 md:px-10 lg:px-16 overflow-hidden max-w-full">
       <SectionTitle label="Skills" title="My tech stack" dark={true} />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">{skillGroups.map(([g, list]) => (
         <Tilt key={g} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6 md:p-7">

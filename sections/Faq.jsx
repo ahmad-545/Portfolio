@@ -6,7 +6,7 @@ import { faqs } from '@/data'
 export default function Faq() {
   const [o, setO] = useState(0)
   return (
-    <section id="faq" className="bg-ink text-white py-16 sm:py-20 md:py-28 px-4 sm:px-5 md:px-10 lg:px-16">
+    <section id="faq" className="bg-ink text-white py-16 sm:py-20 md:py-28 px-4 sm:px-5 md:px-10 lg:px-16 overflow-hidden max-w-full">
       <SectionTitle label="FAQ" title="Frequently asked questions" dark={true} />
       <div className="max-w-4xl">{faqs.map(([q, a], i) => (
         <div key={q} className="border-b border-white/10">

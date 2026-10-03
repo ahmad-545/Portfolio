@@ -15,8 +15,8 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]), y = useTransform(scrollYProgress, [0, 1], [0, -120])
   useEffect(() => { const t = setInterval(() => setI((v) => (v + 1) % me.roles.length), 2200); return () => clearInterval(t) }, [])
   return (
-    <section id="hero" ref={ref} className="relative min-h-[110vh] bg-ink text-white">
-      <div className="sticky top-0 min-h-screen min-h-[100dvh] overflow-hidden flex items-center px-4 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-12 lg:py-16">
+    <section id="hero" ref={ref} className="relative min-h-[110vh] bg-ink text-white overflow-hidden max-w-full">
+      <div className="sticky top-0 min-h-screen min-h-[100dvh] overflow-hidden flex items-center px-4 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-12 lg:py-16 w-full max-w-full">
         {/* Subtle Ambient Background */}
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_70%_70%_at_70%_30%,rgba(6,182,212,0.07),transparent_70%)]" />
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_60%_60%_at_20%_60%,rgba(245,163,0,0.05),transparent_70%)]" />

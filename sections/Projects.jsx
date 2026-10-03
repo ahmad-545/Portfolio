@@ -19,12 +19,12 @@ export default function Projects() {
     return () => mm.revert()
   }, [])
   return (
-    <section id="projects" ref={wrap} className="bg-white text-ink md:h-screen md:overflow-hidden py-14 sm:py-16 md:py-0 flex flex-col justify-center">
+    <section id="projects" ref={wrap} className="bg-white text-ink md:h-screen overflow-hidden py-14 sm:py-16 md:py-0 flex flex-col justify-center max-w-full">
       <div className="px-4 sm:px-5 md:px-10 lg:px-16 mb-6 sm:mb-8 md:mb-10">
         <div className="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-xs tracking-[0.25em] uppercase mb-3 sm:mb-4 text-black/60"><i className="w-2 h-2 rounded-full bg-accent" />Case studies<i className="h-px w-8 sm:w-10 bg-black/30" /></div>
         <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }} className="font-display font-bold uppercase text-[clamp(1.5rem,5vw,4rem)] leading-[1.05]">Discover case studies<br className="hidden md:block" /> and creations <span className="text-accent text-base align-middle ml-2 hidden md:inline">scroll →</span></motion.h2>
       </div>
-      <div className="overflow-x-auto md:overflow-visible snap-x snap-mandatory [scrollbar-width:none]">
+      <div className="overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar [scrollbar-width:none] [&::-webkit-scrollbar]:hidden w-full max-w-full">
         <div ref={track} className="flex gap-4 sm:gap-5 md:gap-8 px-4 sm:px-5 md:px-10 lg:px-16 w-max">
           {projects.map((p, i) => (
             <TLink key={p.slug} href={`/projects/${p.slug}`} data-cursor="View" className="snap-center shrink-0 w-[75vw] sm:w-[60vw] md:w-[440px]">

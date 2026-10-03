@@ -7,7 +7,7 @@ import { pricing } from '@/data'
 export default function Pricing() {
   const { go } = useApp()
   return (
-    <section id="pricing" className="bg-ink text-white py-16 sm:py-20 md:py-28 px-4 sm:px-5 md:px-10 lg:px-16">
+    <section id="pricing" className="bg-ink text-white py-16 sm:py-20 md:py-28 px-4 sm:px-5 md:px-10 lg:px-16 overflow-hidden max-w-full">
       <SectionTitle label="Pricing" title="Choose the right plan for you" dark />
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">{pricing.map(([n, price, sub, feats, hot], i) => (
         <motion.div key={n} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.8 }}>

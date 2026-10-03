@@ -5,7 +5,7 @@ import TLink from '@/components/TLink'
 import { posts } from '@/data'
 export default function BlogPreview({ bare = false }) {
   return (
-    <section id="blog" className="bg-white text-ink py-14 sm:py-16 md:py-28 px-4 sm:px-5 md:px-10 lg:px-16">
+    <section id="blog" className="bg-white text-ink py-14 sm:py-16 md:py-28 px-4 sm:px-5 md:px-10 lg:px-16 overflow-hidden max-w-full">
       {!bare && <SectionTitle label="Blog" title="Learn from the latest news & daily blogs" />}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">{posts.map((p, i) => (
         <motion.div key={p.slug} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>

@@ -27,7 +27,7 @@ export default function Navbar() {
     </motion.header>
     <AnimatePresence>{open && (
       <motion.nav initial={{ clipPath: 'circle(0% at 95% 5%)' }} animate={{ clipPath: 'circle(150% at 95% 5%)' }} exit={{ clipPath: 'circle(0% at 95% 5%)' }} transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-        className="fixed inset-0 z-[70] bg-ink text-white pt-20 sm:pt-24 pb-12 px-4 sm:px-6 md:px-16 overflow-y-auto flex flex-col gap-0.5 sm:gap-1">
+        className="fixed inset-0 z-[70] bg-ink text-white pt-20 sm:pt-24 pb-12 px-4 sm:px-6 md:px-16 overflow-y-auto overflow-x-hidden max-w-full flex flex-col gap-0.5 sm:gap-1">
         {pages.map(([p, l], i) => (
           <motion.div key={p} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 + i * 0.06 }}>
             <TLink href={p} className={`block font-display font-bold uppercase text-[clamp(1.6rem,9vw,4.5rem)] leading-[1.2] hover:text-accent transition-colors ${is(p) ? 'text-accent' : ''}`}>
