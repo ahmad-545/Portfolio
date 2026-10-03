@@ -7,7 +7,11 @@ export default function Footer() {
       <div className="mt-8 sm:mt-10 md:mt-12 flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 text-[13px] sm:text-sm text-white/70">{pages.map(([p, l]) => <TLink key={p} href={p} className="hover:text-accent">{l}</TLink>)}</div>
       <div className="mt-6 sm:mt-8 flex flex-wrap justify-between gap-4 sm:gap-5 text-[12px] sm:text-sm text-white/60 border-t border-white/10 pt-5 sm:pt-6">
         <span className="flex items-center gap-2"><i className="w-2 h-2 rounded-full bg-green-400 animate-pulse" /><span className="hidden sm:inline">Available for freelance &amp; automation projects</span><span className="sm:hidden">Available for freelance</span></span>
-        <div className="flex gap-5"><a href={me.github}>GitHub</a><a href={me.linkedin}>LinkedIn</a><a href={`https://wa.me/${me.whatsapp}`}>WhatsApp</a></div>
+        <div className="flex gap-5">
+          <a href={me.github} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">GitHub</a>
+          <a href={me.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">LinkedIn</a>
+          <a href={`https://wa.me/${me.whatsapp}`} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">WhatsApp</a>
+        </div>
         <span>© {new Date().getFullYear()} {me.name}</span>
       </div>
     </footer>)

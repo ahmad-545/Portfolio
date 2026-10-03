@@ -40,6 +40,7 @@ export default function Providers({ children }) {
   const go = useCallback((href) => {
     if (busy.current) return
     if (href === pathname) return store.lenis?.scrollTo(0)
+    try { router.prefetch(href) } catch (_) {}
     busy.current = true
     setLabel(pages.find(([p]) => p === href)?.[1] || href.split('/')[1] || 'Home'); setOrigin('bottom'); setCover(true)
     setTimeout(() => router.push(href), 750)

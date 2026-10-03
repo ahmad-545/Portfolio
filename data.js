@@ -1,7 +1,13 @@
 // ✏️ EDIT HERE: all your content lives in this file. Replace sample text with your real info.
 export const me = {
-  name: 'Muhammad Ahmad', email: 'ahmaddev545@gmail.com', whatsapp: '923000000000', location: 'Pakistan',
-  github: 'https://github.com/ahmad-545', linkedin: 'https://linkedin.com/in/yourname',
+  name: 'Muhammad Ahmad',
+  email: 'ahmaddev545@gmail.com',
+  phone: '+92 348 4236919',
+  phoneRaw: '03484236919',
+  whatsapp: '923484236919',
+  location: 'Pakistan',
+  github: 'https://github.com/ahmad-545',
+  linkedin: 'https://www.linkedin.com/in/muhammad-ahmad-9b031530a/',
   roles: ['Full Stack Developer', 'MERN & Next.js Developer', 'AI Automation Engineer', 'SaaS Builder'],
   bio: 'I build production-grade SaaS platforms, management systems and AI-powered web apps with MERN and Next.js, and I automate businesses with AI agents and workflows.',
 }
