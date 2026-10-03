@@ -5,7 +5,7 @@ import { services } from '@/data'
 // Cards stack on top of each other while scrolling
 export default function Services() {
   return (
-    <section id="services" className="bg-ink text-white py-16 sm:py-20 md:py-28 px-4 sm:px-5 md:px-10 lg:px-16 overflow-hidden max-w-full">
+    <section id="services" className="bg-ink text-white py-16 sm:py-20 md:py-28 px-4 sm:px-5 md:px-10 lg:px-16">
       <SectionTitle label="Services" title="Offering strategic services for your growth" dark />
       <div className="space-y-4 sm:space-y-6 md:space-y-8 pb-10">{services.map(([n, t, pts], i) => (
         <motion.article key={n} data-cursor="Open" initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}

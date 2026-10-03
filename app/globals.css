@@ -6,20 +6,27 @@
   box-sizing: border-box;
 }
 
-html, body {
-  overflow-x: hidden !important;
-  max-width: 100vw;
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  background: #020617;
+  overflow-x: clip;
+  max-width: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
   position: relative;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
-
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-body { font-family: Inter, sans-serif; background: #020617; word-break: break-word; overflow-wrap: break-word; }
 
 /* Hide scrollbars across Chrome, Safari, Edge, Android to eliminate bottom scrollbar */
 ::-webkit-scrollbar {
