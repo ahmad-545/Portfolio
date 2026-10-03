@@ -4,7 +4,7 @@ import ProjectsGrid from '@/sections/ProjectsGrid'
 export const metadata = {
   title: 'Projects & Case Studies — Full Stack & AI Automation',
   description:
-    'Featured client and SaaS projects engineered by Muhammad Ahmad: ExpenseAI finance tracker, EduManage CMS school platform, and Phonify e-commerce ecosystem.',
+    'Featured client and SaaS projects engineered by Muhammad Ahmad: Trylo AI virtual try-on fashion platform, ExpenseAI finance tracker, EduManage CMS school platform, and Phonify e-commerce ecosystem.',
   alternates: {
     canonical: '/projects',
   },

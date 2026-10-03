@@ -12,14 +12,28 @@ export const me = {
   bio: 'I build production-grade SaaS platforms, management systems and AI-powered web apps with MERN and Next.js, and I automate businesses with AI agents and workflows.',
 }
 export const stats = [['3+', 'Years experience'], ['25+', 'Projects delivered'], ['15+', 'Happy clients'], ['10+', 'Automations built']]
-export const skills = ['React', 'Next.js', 'Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Tailwind CSS', 'TypeScript', 'OpenAI API', 'n8n', 'Make', 'LangChain', 'Docker', 'Three.js', 'Vercel']
+export const skills = ['React', 'Next.js', 'Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Tailwind CSS', 'TypeScript', 'OpenAI API', 'Model Training', 'Model Integration', 'n8n', 'Make', 'LangChain', 'Docker', 'Three.js', 'Vercel']
 export const skillGroups = [
   ['Frontend', ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion', 'GSAP', 'Three.js']],
   ['Backend', ['Node.js', 'Express', 'REST APIs', 'JWT Auth', 'Socket.io']],
   ['Database', ['MongoDB', 'PostgreSQL', 'Redis', 'Firebase']],
-  ['AI & Automation', ['OpenAI / Claude API', 'n8n', 'Make', 'LangChain', 'RAG', 'WhatsApp bots']],
+  ['AI & Automation', ['OpenAI / Claude API', 'Model Training', 'Model Integration', 'n8n', 'Make', 'LangChain', 'RAG', 'WhatsApp bots']],
 ]
 export const projects = [
+  {
+    slug: 'trylo',
+    title: 'Trylo — AI Virtual Try-On Fashion & Clothing Store',
+    type: 'AI & E-Commerce',
+    tech: ['Next.js', 'React', 'Tailwind CSS', 'Virtual Try-On AI', 'Model Integration', 'Node.js'],
+    image: '/images/trylo.png',
+    desc: 'Intelligent fashion e-commerce storefront featuring an interactive AI Virtual Try-On engine, custom Trylo Fashion AI stylist chatbot, and full apparel catalog.',
+    problem: 'Online fashion shoppers hesitate to purchase due to uncertainty about how garments fit, leading to high return rates and low consumer confidence.',
+    solution: 'Engineered a modern clothing e-commerce platform with a virtual try-on visualization engine, bespoke Trylo Fashion AI stylist chatbot for real-time outfit advice, category filtering, and instant checkout.',
+    result: 'Elevated shopper engagement with 3.2x longer dwell time and higher conversion through interactive try-on preview.',
+    live: '#',
+    github: '#',
+    highlights: ['Interactive "Try On Cloth" Feature', 'Trylo Fashion AI Online Stylist', 'Summer Collections 2026 Showcase', 'Direct Order & Tracking System']
+  },
   {
     slug: 'expense-ai',
     title: 'ExpenseAI — AI Expense & Subscription Tracker',

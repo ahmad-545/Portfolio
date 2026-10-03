@@ -118,6 +118,8 @@ const schemaData = {
         'Tailwind CSS',
         'TypeScript',
         'AI Automation',
+        'Model Training',
+        'Model Integration',
         'n8n',
         'Make',
         'REST APIs',
