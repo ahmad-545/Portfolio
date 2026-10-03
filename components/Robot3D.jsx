@@ -155,9 +155,9 @@ function FallbackRobot() {
   )
 }
 
-export default function Robot3D() {
+export default function Robot3D({ className = '' }) {
   return (
-    <div className="relative w-full h-[420px] sm:h-[480px] lg:h-[540px] flex items-center justify-center select-none">
+    <div className={`relative w-full h-[320px] sm:h-[380px] md:h-[440px] lg:h-[540px] flex items-center justify-center select-none ${className}`}>
       <Canvas
         dpr={[1, 2]}
         camera={{ position: [0, 0, 4.3], fov: 44 }}
