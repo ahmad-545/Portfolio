@@ -17,9 +17,10 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/hero-robot.png',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
+        type: 'image/png',
         alt: 'Muhammad Ahmad Packages & Pricing',
       },
     ],
@@ -29,7 +30,7 @@ export const metadata = {
     title: 'Pricing & Packages — Muhammad Ahmad',
     description:
       'Transparent pricing packages for high-performance websites, SaaS MVPs, and AI automation.',
-    images: ['/images/hero-robot.png'],
+    images: ['/images/og-image.png'],
   },
 }
 

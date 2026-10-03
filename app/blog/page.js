@@ -19,6 +19,7 @@ export const metadata = {
         url: '/images/blog-ai-automation.png',
         width: 1200,
         height: 630,
+        type: 'image/png',
         alt: 'Muhammad Ahmad Engineering Blog',
       },
     ],

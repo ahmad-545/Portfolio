@@ -19,9 +19,10 @@ export const metadata = {
     type: 'profile',
     images: [
       {
-        url: '/images/hero-robot.png',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
+        type: 'image/png',
         alt: 'About Muhammad Ahmad',
       },
     ],
@@ -31,7 +32,7 @@ export const metadata = {
     title: 'About Muhammad Ahmad — Full Stack & AI Automation Developer',
     description:
       'Discover Muhammad Ahmad’s journey delivering 25+ production projects across SaaS, Next.js, and AI automation.',
-    images: ['/images/hero-robot.png'],
+    images: ['/images/og-image.png'],
   },
 }
 

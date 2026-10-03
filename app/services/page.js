@@ -18,9 +18,10 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/hero-robot.png',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
+        type: 'image/png',
         alt: 'Services by Muhammad Ahmad',
       },
     ],
@@ -30,7 +31,7 @@ export const metadata = {
     title: 'Services — Full Stack Development & AI Automation',
     description:
       'Custom Web Solutions, AI Automation with n8n & Make, and MERN & Next.js architectures by Muhammad Ahmad.',
-    images: ['/images/hero-robot.png'],
+    images: ['/images/og-image.png'],
   },
 }
 

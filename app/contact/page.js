@@ -16,9 +16,10 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/hero-robot.png',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
+        type: 'image/png',
         alt: 'Contact Muhammad Ahmad',
       },
     ],
@@ -28,7 +29,7 @@ export const metadata = {
     title: 'Contact Muhammad Ahmad — Let’s Build Together',
     description:
       'Inquire about full stack web development and AI workflow automation. Fast turnaround & clear communication.',
-    images: ['/images/hero-robot.png'],
+    images: ['/images/og-image.png'],
   },
 }
 

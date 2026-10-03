@@ -44,9 +44,11 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/hero-robot.png',
+        url: '/images/og-image.png',
+        secureUrl: `${siteUrl}/images/og-image.png`,
         width: 1200,
         height: 630,
+        type: 'image/png',
         alt: 'Muhammad Ahmad — Full Stack Developer & AI Automation Engineer',
       },
     ],
@@ -56,7 +58,7 @@ export const metadata = {
     title: 'Muhammad Ahmad — Full Stack Developer & AI Automation',
     description:
       'Production-grade SaaS platforms, MERN & Next.js web applications, and AI-powered workflow automations.',
-    images: ['/images/hero-robot.png'],
+    images: ['/images/og-image.png'],
     creator: '@ahmaddev545',
   },
   robots: {
@@ -69,6 +71,16 @@ export const metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
   },
   category: 'technology',
 }
@@ -91,7 +103,7 @@ const schemaData = {
       email: 'mailto:ahmaddev545@gmail.com',
       telephone: '+923484236919',
       url: siteUrl,
-      image: `${siteUrl}/images/hero-robot.png`,
+      image: `${siteUrl}/images/og-image.png`,
       sameAs: [
         'https://github.com/ahmad-545',
         'https://www.linkedin.com/in/muhammad-ahmad-9b031530a/',
