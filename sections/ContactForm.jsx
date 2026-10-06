@@ -27,7 +27,7 @@ export default function ContactForm() {
           <div className="flex items-center gap-3 text-xs tracking-[0.25em] uppercase mb-5 text-white/60"><i className="w-2 h-2 rounded-full bg-accent" /><i className="h-px w-10 bg-white/30" />Contact</div>
           <motion.h2 initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }} className="font-display font-bold uppercase text-[clamp(1.8rem,7vw,6rem)] leading-none">Got a project? <span className="text-accent">Let&apos;s talk.</span></motion.h2>
           <div className="mt-6 sm:mt-8 space-y-2.5 sm:space-y-3 text-white/70 text-sm md:text-base">
-            <button onClick={() => navigator.clipboard.writeText(me.email)} className="block hover:text-accent text-left break-all" data-cursor="Copy">{me.email} (click to copy)</button>
+            <button onClick={() => { try { navigator.clipboard?.writeText(me.email) } catch(_){} }} className="block hover:text-accent text-left break-all" data-cursor="Copy">{me.email} (click to copy)</button>
             <a className="block hover:text-accent" href={`tel:${me.phoneRaw}`}>Call / Direct: {me.phone}</a>
             <a className="block hover:text-accent" target="_blank" rel="noopener noreferrer" href={`https://wa.me/${me.whatsapp}`}>Chat on WhatsApp →</a>
           </div>

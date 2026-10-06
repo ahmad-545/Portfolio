@@ -1,5 +1,5 @@
 'use client'
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 // Home page: section pins and cards scroll sideways (desktop). Mobile: swipe row. Cards open their own page.
 export default function Projects() {
   const wrap = useRef(null), track = useRef(null)
-  useLayoutEffect(() => {
+  useEffect(() => {
     const mm = gsap.matchMedia()
     mm.add('(min-width: 768px)', () => {
       const dist = () => Math.max(0, track.current.scrollWidth - window.innerWidth)
