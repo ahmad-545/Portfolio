@@ -9,13 +9,13 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 body {
   font-family: Inter, sans-serif;
   background: #020617;
-  overflow-x: clip;
+  overflow-x: hidden;
   max-width: 100%;
   width: 100%;
   margin: 0;
@@ -40,6 +40,7 @@ html.lenis, html.lenis body { height: auto; }
   scrollbar-width: none !important;
 }
 
-@media (pointer: fine) { body, a, button { cursor: none; } }
+/* Hide default cursor only on true desktop/mouse devices (not touch/mobile) */
+@media (pointer: fine) and (hover: hover) { body, a, button { cursor: none; } }
 @keyframes marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { * { animation-duration: .01ms !important; transition-duration: .01ms !important; } }

@@ -8,10 +8,10 @@ export default function Preloader({ onDone }) {
 
   useEffect(() => {
     const c = animate(0, 100, {
-      duration: 2.4,
+      duration: 1.8,
       ease: [0.25, 0.1, 0.25, 1],
       onUpdate: (v) => setN(Math.round(v)),
-      onComplete: () => setTimeout(onDone, 300),
+      onComplete: () => setTimeout(onDone, 200),
     })
     return () => c.stop()
   }, [onDone])

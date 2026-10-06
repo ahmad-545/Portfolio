@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useMemo, Suspense } from 'react'
+import { useRef, useMemo, Suspense, useEffect, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
@@ -38,7 +38,7 @@ function HologramBase() {
 }
 
 // 3D Cybernetic Data Particles
-function CyberParticles({ count = 90 }) {
+function CyberParticles({ count = 60 }) {
   const ref = useRef()
   const pos = useMemo(() => {
     const arr = new Float32Array(count * 3)
@@ -156,12 +156,26 @@ function FallbackRobot() {
 }
 
 export default function Robot3D({ className = '' }) {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024 || !window.matchMedia('(hover: hover)').matches)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  // On mobile/tablet, show the fallback image directly - no WebGL needed
+  if (isMobile) {
+    return <FallbackRobot />
+  }
+
   return (
     <div className={`relative w-full h-[320px] sm:h-[380px] md:h-[440px] lg:h-[540px] flex items-center justify-center select-none ${className}`}>
       <Canvas
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         camera={{ position: [0, 0, 4.3], fov: 44 }}
-        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+        gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
         className="cursor-grab active:cursor-grabbing"
       >
         <ambientLight intensity={0.8} />
@@ -175,7 +189,7 @@ export default function Robot3D({ className = '' }) {
         <Suspense fallback={null}>
           <RobotMesh />
           <HologramBase />
-          <CyberParticles count={80} />
+          <CyberParticles count={60} />
         </Suspense>
       </Canvas>
     </div>

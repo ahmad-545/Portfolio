@@ -21,6 +21,12 @@ export default function Providers({ children }) {
   const [loading, setLoading] = useState(true), [cover, setCover] = useState(false)
   const [origin, setOrigin] = useState('bottom'), [label, setLabel] = useState(''), busy = useRef(false)
 
+  // Safety net: force show page after 5s max — prevents permanent blank screen on slow mobile
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 5000)
+    return () => clearTimeout(t)
+  }, [])
+
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.09 }); store.lenis = lenis
     lenis.on('scroll', ScrollTrigger.update)
