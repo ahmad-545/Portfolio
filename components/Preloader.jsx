@@ -7,13 +7,28 @@ export default function Preloader({ onDone }) {
   const [n, setN] = useState(0)
 
   useEffect(() => {
+    let doneCalled = false
+    const finish = () => {
+      if (!doneCalled) {
+        doneCalled = true
+        onDone?.()
+      }
+    }
     const c = animate(0, 100, {
       duration: 1.8,
       ease: [0.25, 0.1, 0.25, 1],
       onUpdate: (v) => setN(Math.round(v)),
-      onComplete: () => setTimeout(onDone, 200),
+      onComplete: () => setTimeout(finish, 150),
     })
-    return () => c.stop()
+    const fallback = setTimeout(() => {
+      setN(100)
+      finish()
+    }, 2200)
+
+    return () => {
+      c.stop()
+      clearTimeout(fallback)
+    }
   }, [onDone])
 
   // Dynamic automatic greeting / welcoming text as progress counts up

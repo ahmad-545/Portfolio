@@ -1,8 +1,28 @@
 'use client'
-import { useRef, useMemo, Suspense, useEffect, useState } from 'react'
+import React, { useRef, useMemo, Suspense, useEffect, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
+
+// ErrorBoundary to prevent any Three.js / WebGL crash from affecting the page
+class ThreeErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false }
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+  componentDidCatch(error, info) {
+    console.warn('WebGL/3D caught safely:', error, info)
+  }
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || null
+    }
+    return this.props.children
+  }
+}
 
 // 3D Robot Hologram Platform Rings
 function HologramBase() {
@@ -89,12 +109,12 @@ function RobotMesh() {
     }
   }, [texture])
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (!groupRef.current) return
 
     // Smooth cursor tracking in 3D space
-    const targetRotY = state.pointer.x * 0.48 // Left/Right 3D angle
-    const targetRotX = -state.pointer.y * 0.32 // Up/Down 3D angle
+    const targetRotY = state.pointer.x * 0.48
+    const targetRotX = -state.pointer.y * 0.32
     const targetPosX = state.pointer.x * 0.22
     const targetPosY = state.pointer.y * 0.18
 
@@ -104,7 +124,7 @@ function RobotMesh() {
     groupRef.current.position.x += (targetPosX - groupRef.current.position.x) * 0.08
     groupRef.current.position.y += (targetPosY - groupRef.current.position.y) * 0.08
 
-    // Real-time cursor light follows mouse to create realistic specular reflections
+    // Real-time cursor light follows mouse
     if (lightRef.current) {
       lightRef.current.position.x = state.pointer.x * 3.5
       lightRef.current.position.y = state.pointer.y * 3.5
@@ -145,53 +165,66 @@ function RobotMesh() {
 
 function FallbackRobot() {
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full flex items-center justify-center select-none">
       <img
         src="/images/robot-transparent.png"
-        alt="3D Robot Model"
-        className="w-[85%] max-w-[360px] h-auto object-contain animate-pulse"
+        alt="Muhammad Ahmad AI Robot Assistant"
+        className="w-[85%] max-w-[360px] h-auto object-contain drop-shadow-[0_15px_30px_rgba(6,182,212,0.35)]"
+        loading="eager"
       />
     </div>
   )
 }
 
 export default function Robot3D({ className = '' }) {
-  const [isMobile, setIsMobile] = useState(false)
+  // Always starts as false: SSR and mobile get the clean FallbackRobot without touching WebGL
+  const [canRender3D, setCanRender3D] = useState(false)
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024 || !window.matchMedia('(hover: hover)').matches)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
+    try {
+      const isTouch = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+      const isLargeScreen = window.innerWidth >= 1024
+      const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+      const canvas = document.createElement('canvas')
+      const hasWebGL = !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+
+      if (isLargeScreen && !isTouch && hasFinePointer && hasWebGL) {
+        setCanRender3D(true)
+      }
+    } catch (_) {
+      setCanRender3D(false)
+    }
   }, [])
 
-  // On mobile/tablet, show the fallback image directly - no WebGL needed
-  if (isMobile) {
+  // Mobile / touch / small screens: render clean, lightweight image (no WebGL overhead or crash)
+  if (!canRender3D) {
     return <FallbackRobot />
   }
 
   return (
     <div className={`relative w-full h-[320px] sm:h-[380px] md:h-[440px] lg:h-[540px] flex items-center justify-center select-none ${className}`}>
-      <Canvas
-        dpr={[1, 1.5]}
-        camera={{ position: [0, 0, 4.3], fov: 44 }}
-        gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
-        className="cursor-grab active:cursor-grabbing"
-      >
-        <ambientLight intensity={0.8} />
-        {/* Key Golden Warm Light */}
-        <directionalLight position={[3.5, 4, 3]} intensity={2.6} color="#ffd79a" />
-        {/* High-tech Cyan Rim Light from behind-left */}
-        <pointLight position={[-3.5, 1.8, -1.5]} intensity={25} color="#00f0ff" />
-        {/* Soft bottom fill */}
-        <pointLight position={[0, -2.5, 2]} intensity={12} color="#F5A300" />
+      <ThreeErrorBoundary fallback={<FallbackRobot />}>
+        <Canvas
+          dpr={[1, 1.5]}
+          camera={{ position: [0, 0, 4.3], fov: 44 }}
+          gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
+          className="cursor-grab active:cursor-grabbing"
+        >
+          <ambientLight intensity={0.8} />
+          {/* Key Golden Warm Light */}
+          <directionalLight position={[3.5, 4, 3]} intensity={2.6} color="#ffd79a" />
+          {/* High-tech Cyan Rim Light from behind-left */}
+          <pointLight position={[-3.5, 1.8, -1.5]} intensity={25} color="#00f0ff" />
+          {/* Soft bottom fill */}
+          <pointLight position={[0, -2.5, 2]} intensity={12} color="#F5A300" />
 
-        <Suspense fallback={null}>
-          <RobotMesh />
-          <HologramBase />
-          <CyberParticles count={60} />
-        </Suspense>
-      </Canvas>
+          <Suspense fallback={null}>
+            <RobotMesh />
+            <HologramBase />
+            <CyberParticles count={60} />
+          </Suspense>
+        </Canvas>
+      </ThreeErrorBoundary>
     </div>
   )
 }

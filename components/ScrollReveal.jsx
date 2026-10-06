@@ -7,7 +7,10 @@ gsap.registerPlugin(ScrollTrigger)
 export default function ScrollReveal({ text, as: Tag = 'h2', className = '' }) {
   const ref = useRef(null)
   useEffect(() => {
-    const t = gsap.fromTo(ref.current.querySelectorAll('.ch'), { opacity: 0.15 }, { opacity: 1, stagger: 0.08, ease: 'none',
+    if (!ref.current) return
+    const targets = ref.current.querySelectorAll('.ch')
+    if (!targets.length) return
+    const t = gsap.fromTo(targets, { opacity: 0.15 }, { opacity: 1, stagger: 0.08, ease: 'none',
       scrollTrigger: { trigger: ref.current, start: 'top 88%', end: 'bottom 45%', scrub: true } })
     return () => { t.scrollTrigger?.kill(); t.kill() }
   }, [])

@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Preloader from './Preloader'
 import CustomCursor from './CustomCursor'
 import ScrollProgress from './ScrollProgress'
+import ErrorBoundary from './ErrorBoundary'
 import { store } from '@/lib/lenis'
 import { pages } from '@/data'
 gsap.registerPlugin(ScrollTrigger)
@@ -19,33 +20,19 @@ const ease = [0.76, 0, 0.24, 1]
 export default function Providers({ children }) {
   const router = useRouter(), pathname = usePathname()
 
-  // loading = false by default (content always visible on SSR/mobile)
-  // showPreloader = separately controls the animation overlay
-  const [loading, setLoading] = useState(false)
-  const [showPreloader, setShowPreloader] = useState(false)
+  // Preloader overlay starts visible on mount and slides away when done
+  const [showPreloader, setShowPreloader] = useState(true)
   const [cover, setCover] = useState(false)
   const [origin, setOrigin] = useState('bottom')
   const [label, setLabel] = useState('')
   const busy = useRef(false)
 
+  // Hard safety timeout — guarantees preloader unconditionally dismisses
   useEffect(() => {
-    // Only show preloader on desktop (non-touch, hover-capable devices)
-    const isDesktop =
-      !('ontouchstart' in window) &&
-      navigator.maxTouchPoints === 0 &&
-      window.matchMedia('(hover: hover) and (pointer: fine)').matches
-
-    if (isDesktop) {
-      setLoading(true)
-      setShowPreloader(true)
-      // Hard 3s max safety timeout — kabhi bhi page black nahi rahega
-      const t = setTimeout(() => {
-        setLoading(false)
-        setShowPreloader(false)
-      }, 3000)
-      return () => clearTimeout(t)
-    }
-    // Mobile/tablet: content is immediately visible, no preloader
+    const t = setTimeout(() => {
+      setShowPreloader(false)
+    }, 2400)
+    return () => clearTimeout(t)
   }, [])
 
   useEffect(() => {
@@ -54,7 +41,7 @@ export default function Providers({ children }) {
     lenis.on('scroll', ScrollTrigger.update)
     const tick = (t) => lenis.raf(t * 1000)
     gsap.ticker.add(tick)
-    gsap.ticker.lagSmoothing(0)
+    gsap.ticker.lagSmoothing(1000, 16)
     return () => {
       gsap.ticker.remove(tick)
       lenis.destroy()
@@ -88,7 +75,6 @@ export default function Providers({ children }) {
   }, [pathname, router])
 
   const handlePreloaderDone = () => {
-    setLoading(false)
     setShowPreloader(false)
   }
 
@@ -97,23 +83,19 @@ export default function Providers({ children }) {
       <CustomCursor />
       <ScrollProgress />
 
-      {/* Preloader — only shown on desktop after JS detects non-touch device */}
+      {/* Preloader overlay — slides up on complete; content is never hidden behind an opacity:0 block */}
       <AnimatePresence>
         {showPreloader && <Preloader onDone={handlePreloaderDone} />}
       </AnimatePresence>
 
-      {/* Content — ALWAYS visible on mobile (no opacity:0 in SSR HTML) */}
-      {loading ? (
-        // Desktop: hidden while preloader runs (set via JS after mount, never in SSR)
-        <div style={{ opacity: 0, visibility: 'hidden' }} className="w-full max-w-full relative">
+      {/* Main Content — ALWAYS rendered and visible, protected by ErrorBoundary */}
+      <ErrorBoundary>
+        <div className="w-full max-w-full relative">
           {children}
         </div>
-      ) : (
-        <div style={{ opacity: 1, transition: 'opacity 0.4s ease' }} className="w-full max-w-full relative">
-          {children}
-        </div>
-      )}
+      </ErrorBoundary>
 
+      {/* Page Transition Curtain */}
       <motion.div
         className="fixed inset-0 z-[90] bg-accent pointer-events-none flex items-center justify-center p-4 text-center overflow-hidden max-w-full"
         style={{ transformOrigin: origin }}

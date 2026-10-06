@@ -13,8 +13,21 @@ export default function Projects() {
   useEffect(() => {
     const mm = gsap.matchMedia()
     mm.add('(min-width: 768px)', () => {
-      const dist = () => Math.max(0, track.current.scrollWidth - window.innerWidth)
-      gsap.to(track.current, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: wrap.current, start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 } })
+      if (!wrap.current || !track.current) return
+      const dist = () => Math.max(0, (track.current?.scrollWidth || 0) - window.innerWidth)
+      gsap.to(track.current, {
+        x: () => -dist(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: wrap.current,
+          start: 'top top',
+          end: () => '+=' + dist(),
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
+        },
+      })
     })
     return () => mm.revert()
   }, [])
