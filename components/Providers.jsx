@@ -16,36 +16,36 @@ const Ctx = createContext({ go: () => {} })
 export const useApp = () => useContext(Ctx)
 const ease = [0.76, 0, 0.24, 1]
 
-// Detect touch/mobile — preloader skip karo mobile pe
-function isTouchDevice() {
-  if (typeof window === 'undefined') return false
-  return (
-    'ontouchstart' in window ||
-    navigator.maxTouchPoints > 0 ||
-    window.matchMedia('(pointer: coarse)').matches
-  )
-}
-
 export default function Providers({ children }) {
   const router = useRouter(), pathname = usePathname()
 
-  // Mobile pe loading false se start — preloader skip
-  // Desktop pe true se start — preloader show
-  const [loading, setLoading] = useState(true)
+  // loading = false by default (content always visible on SSR/mobile)
+  // showPreloader = separately controls the animation overlay
+  const [loading, setLoading] = useState(false)
+  const [showPreloader, setShowPreloader] = useState(false)
   const [cover, setCover] = useState(false)
   const [origin, setOrigin] = useState('bottom')
   const [label, setLabel] = useState('')
   const busy = useRef(false)
 
   useEffect(() => {
-    // Agar mobile/touch device hai toh immediately show karo
-    if (isTouchDevice()) {
-      setLoading(false)
-      return
+    // Only show preloader on desktop (non-touch, hover-capable devices)
+    const isDesktop =
+      !('ontouchstart' in window) &&
+      navigator.maxTouchPoints === 0 &&
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
+    if (isDesktop) {
+      setLoading(true)
+      setShowPreloader(true)
+      // Hard 3s max safety timeout — kabhi bhi page black nahi rahega
+      const t = setTimeout(() => {
+        setLoading(false)
+        setShowPreloader(false)
+      }, 3000)
+      return () => clearTimeout(t)
     }
-    // Desktop ke liye hard 3s safety timeout — kabhi bhi black screen nahi
-    const t = setTimeout(() => setLoading(false), 3000)
-    return () => clearTimeout(t)
+    // Mobile/tablet: content is immediately visible, no preloader
   }, [])
 
   useEffect(() => {
@@ -87,25 +87,32 @@ export default function Providers({ children }) {
     setTimeout(() => router.push(href), 750)
   }, [pathname, router])
 
+  const handlePreloaderDone = () => {
+    setLoading(false)
+    setShowPreloader(false)
+  }
+
   return (
     <Ctx.Provider value={{ go }}>
       <CustomCursor />
       <ScrollProgress />
+
+      {/* Preloader — only shown on desktop after JS detects non-touch device */}
       <AnimatePresence>
-        {loading && <Preloader onDone={() => setLoading(false)} />}
+        {showPreloader && <Preloader onDone={handlePreloaderDone} />}
       </AnimatePresence>
 
-      {/* visibility + opacity dono use karo — mobile pe reliable hai */}
-      <div
-        style={{
-          opacity: loading ? 0 : 1,
-          visibility: loading ? 'hidden' : 'visible',
-          transition: 'opacity 0.4s ease',
-        }}
-        className="w-full max-w-full relative"
-      >
-        {children}
-      </div>
+      {/* Content — ALWAYS visible on mobile (no opacity:0 in SSR HTML) */}
+      {loading ? (
+        // Desktop: hidden while preloader runs (set via JS after mount, never in SSR)
+        <div style={{ opacity: 0, visibility: 'hidden' }} className="w-full max-w-full relative">
+          {children}
+        </div>
+      ) : (
+        <div style={{ opacity: 1, transition: 'opacity 0.4s ease' }} className="w-full max-w-full relative">
+          {children}
+        </div>
+      )}
 
       <motion.div
         className="fixed inset-0 z-[90] bg-accent pointer-events-none flex items-center justify-center p-4 text-center overflow-hidden max-w-full"
